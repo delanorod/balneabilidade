@@ -1,0 +1,48 @@
+{
+  "ultima_atualizacao": "2026-03-18T09:30:40.012573",
+  "praia_recomendada": "Copacabana",
+  "praias": [
+    {
+      "nome": "Copacabana",
+      "onda": 1.26,
+      "vento": 2.2,
+      "balneabilidade": "propria",
+      "score": 140
+    },
+    {
+      "nome": "Arpoador",
+      "onda": 1.44,
+      "vento": 2.2,
+      "balneabilidade": "propria",
+      "score": 140
+    },
+    {
+      "nome": "Ipanema",
+      "onda": 1.44,
+      "vento": 2.2,
+      "balneabilidade": "propria",
+      "score": 140
+    },
+    {
+      "nome": "Leblon",
+      "onda": 1.44,
+      "vento": 2.2,
+      "balneabilidade": "propria",
+      "score": 140
+    },
+    {
+      "nome": "São Conrado",
+      "onda": 1.42,
+      "vento": 2.2,
+      "balneabilidade": "propria",
+      "score": 140
+    },
+    {
+      "nome": "Barra",
+      "onda": 1.4,
+      "vento": 2.2,
+      "balneabilidade": null,
+      "score": 40
+    }
+  ]
+}
