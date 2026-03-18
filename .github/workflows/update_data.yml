@@ -1,0 +1,35 @@
+name: Atualizar dados das praias
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: |
+          pip install requests beautifulsoup4 pandas lxml
+
+      - name: Executar script
+        run: |
+          python gerar_json_praias.py
+
+      - name: Commit do JSON atualizado
+        run: |
+          git config --global user.name "bot-to-de-onda"
+          git config --global user.email "bot@github.com"
+          git add praias_rj.json
+          git commit -m "Atualização automática das praias"
+          git push
