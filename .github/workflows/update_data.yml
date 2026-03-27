@@ -25,6 +25,11 @@ jobs:
       - name: Executar script
         run: |
           python gerar_json_praias.py
+    
+    
+    run: |
+      git config --global user.name "bot-to-de-onda"
+      git config --global user.email "bot@github.com"
 
       - name: Commit e push seguro
         run: |
