@@ -26,10 +26,14 @@ jobs:
         run: |
           python gerar_json_praias.py
 
-      - name: Commit do JSON atualizado
+     - name: Commit do JSON atualizado
         run: |
           git config --global user.name "bot-to-de-onda"
           git config --global user.email "bot@github.com"
+      
+          git pull origin main --rebase
+      
           git add praias_rj.json
-          git commit -m "Atualização automática das praias"
-          git push
+          git commit -m "Atualização automática das praias" || echo "Sem mudanças"
+
+    git push origin main
