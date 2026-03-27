@@ -31,17 +31,21 @@ jobs:
       git config --global user.name "bot-to-de-onda"
       git config --global user.email "bot@github.com"
 
-          git checkout main
-      
+      - name: Commit e push seguro
+        run: |
+          git config --global user.name "bot-to-de-onda"
+          git config --global user.email "bot@github.com"
+
+          # garante que estamos na branch main atualizada
           git fetch origin
+          git checkout main
           git reset --hard origin/main
 
-        
+          # adiciona mudanças
           git add praias_rj.json
 
-    
+          # commit (se houver mudança)
           git commit -m "Atualização automática das praias" || echo "Sem mudanças"
 
-    # push
-    git push origin main
-    
+          # push forçado seguro
+          git push origin main
