@@ -75,6 +75,17 @@ for item in bal_lista:
     balneabilidade[item.praia_nome] = {
         "status": item.status
     }
+# -----------------------------------------
+# COORDENADAS DAS PRAIAS
+# -----------------------------------------
+
+COORDENADAS = {
+    "Copacabana": {"lat": -22.9711, "lon": -43.1822},
+    "Ipanema": {"lat": -22.9836, "lon": -43.2045},
+    "Leblon": {"lat": -22.9896, "lon": -43.2249},
+    "Barra da Tijuca": {"lat": -23.0016, "lon": -43.3659},
+    "Recreio": {"lat": -23.0293, "lon": -43.4800},
+}
 
 
 # -----------------------------------------
@@ -84,6 +95,10 @@ for item in bal_lista:
 dados_finais = []
 
 for praia in PRAIAS.keys():
+    coord = COORDENADAS.get(praia, {})
+
+    lat = coord.get("lat")
+    lon = coord.get("lon")
 
     df = ondas.get(praia)
 
@@ -110,7 +125,9 @@ for praia in PRAIAS.keys():
         "onda": onda,
         "vento": vento,
         "balneabilidade": status,
-        "score": score
+        "score": score,
+        "lat": lat,
+        "lon": lon
     })
 
 
