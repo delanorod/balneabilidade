@@ -2,7 +2,7 @@ name: Atualizar dados das praias
 
 on:
   schedule:
-    - cron: "0 10 * * *"
+    - cron: "0 10 * * *" # roda todo dia às 10h UTC (~7h Brasil)
   workflow_dispatch:
 
 jobs:
@@ -10,37 +10,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 🔹 Clona o repositório
       - name: Clonar repositório
         uses: actions/checkout@v3
 
+      # 🔹 Instala Python
       - name: Instalar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
+      # 🔹 Instala dependências
       - name: Instalar dependências
         run: |
           pip install requests beautifulsoup4 pandas lxml
 
+      # 🔹 Executa seu script
       - name: Executar script
         run: |
           python gerar_json_praias.py
 
-    - name: Commit e push seguro
-      run: |
-        git config --global user.name "bot-to-de-onda"
-        git config --global user.email "bot@github.com"
-    
-        # garante que estamos na branch main atualizada
-        git fetch origin
-        git checkout main
-        git reset --hard origin/main
-    
-        # adiciona mudanças
-        git add praias_rj.json
-    
-        # commit (se houver mudança)
-        git commit -m "Atualização automática das praias" || echo "Sem mudanças"
-    
-        # push forçado seguro
-        git push origin main
+      # 🔥 Commit e push (VERSÃO BLINDADA)
+      - name: Commit e push seguro
+        run: |
+          git config --global user.name "bot-to-de-onda"
+          git config --global user.email "bot@github.com"
+
+          # garante branch correta
+          git checkout main
+
+          # sincroniza com remoto (sem conflito)
+          git fetch origin
+          git reset --hard origin/main
+
+          # adiciona arquivo atualizado
+          git add praias_rj.json
+
+          # commit se houver mudança
+          git commit -m "Atualização automática das praias" || echo "Sem mudanças"
+
+          # push final
+          git push origin main
