@@ -12,6 +12,14 @@ import extrator_ondasZSul
 from extrator_ondasZSul import PRAIAS
 from inea_scraper import INEAScraper
 
+COORDENADAS = {
+    "Copacabana": {"lat": -22.9711, "lon": -43.1822},
+    "Arpoador": {"lat": -22.9870, "lon": -43.1910},
+    "Ipanema": {"lat": -22.9836, "lon": -43.2045},
+    "Leblon": {"lat": -22.9896, "lon": -43.2249},
+    "Barra da Tijuca": {"lat": -23.0016, "lon": -43.3659},
+    "Recreio": {"lat": -23.0293, "lon": -43.4800},
+}
 
 # -----------------------------------------
 # CALCULAR SCORE DA PRAIA

@@ -1,48 +1,60 @@
 {
-  "ultima_atualizacao": "2026-03-27T11:57:29.670271",
-  "praia_recomendada": "Copacabana",
+  "ultima_atualizacao": "2026-03-30T14:28:07.487557",
+  "praia_recomendada": "Arpoador",
   "praias": [
     {
       "nome": "Copacabana",
-      "onda": 1.06,
-      "vento": 1.8,
-      "balneabilidade": "propria",
-      "score": 140
+      "onda": 0.9,
+      "vento": 2.5,
+      "balneabilidade": "impropria",
+      "score": -40,
+      "lat": -22.9711,
+      "lon": -43.1822
     },
     {
       "nome": "Arpoador",
-      "onda": 1.28,
-      "vento": 1.8,
+      "onda": 1.04,
+      "vento": 2.5,
       "balneabilidade": "propria",
-      "score": 140
+      "score": 140,
+      "lat": null,
+      "lon": null
     },
     {
       "nome": "Ipanema",
-      "onda": 1.28,
-      "vento": 1.8,
+      "onda": 1.04,
+      "vento": 2.5,
       "balneabilidade": "propria",
-      "score": 140
+      "score": 140,
+      "lat": -22.9836,
+      "lon": -43.2045
     },
     {
       "nome": "Leblon",
-      "onda": 1.28,
-      "vento": 1.8,
-      "balneabilidade": "propria",
-      "score": 140
+      "onda": 1.04,
+      "vento": 2.5,
+      "balneabilidade": "impropria",
+      "score": -60,
+      "lat": -22.9896,
+      "lon": -43.2249
     },
     {
       "nome": "São Conrado",
-      "onda": 1.26,
-      "vento": 1.8,
-      "balneabilidade": "propria",
-      "score": 140
+      "onda": 1.02,
+      "vento": 2.5,
+      "balneabilidade": "impropria",
+      "score": -60,
+      "lat": null,
+      "lon": null
     },
     {
       "nome": "Barra",
-      "onda": 1.24,
-      "vento": 1.1,
+      "onda": 0.98,
+      "vento": 1.6,
       "balneabilidade": null,
-      "score": 40
+      "score": 60,
+      "lat": null,
+      "lon": null
     }
   ]
 }
