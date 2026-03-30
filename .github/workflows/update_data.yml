@@ -2,7 +2,7 @@ name: Atualizar dados das praias
 
 on:
   schedule:
-    - cron: "0 10 * * *" # roda todo dia às 10h UTC (~7h Brasil)
+    - cron: "0 10 * * *"
   workflow_dispatch:
 
 jobs:
