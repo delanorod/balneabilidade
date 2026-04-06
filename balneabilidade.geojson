@@ -1,0 +1,1357 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "gerado_em": "2026-04-06T14:10:59.527855",
+    "total_praias": 45,
+    "sistema": "INEA Balneabilidade Scraper v2.0"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1674,
+          -22.9635
+        ]
+      },
+      "properties": {
+        "id": "leme",
+        "nome": "Leme",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Leme",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 75,
+        "extensao_km": 0.8,
+        "caracteristicas": [
+          "urbanizada",
+          "familiar",
+          "acessível"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1823,
+          -22.9711
+        ]
+      },
+      "properties": {
+        "id": "copacabana",
+        "nome": "Copacabana",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Copacabana",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 300,
+        "extensao_km": 4.0,
+        "caracteristicas": [
+          "urbanizada",
+          "turística",
+          "agitada"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.194,
+          -22.9876
+        ]
+      },
+      "properties": {
+        "id": "arpoador",
+        "nome": "Arpoador",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Ipanema",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 154,
+        "extensao_km": 0.5,
+        "caracteristicas": [
+          "surf",
+          "pôr-do-sol",
+          "rochosa"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.204,
+          -22.9868
+        ]
+      },
+      "properties": {
+        "id": "ipanema",
+        "nome": "Ipanema",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Ipanema",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 608,
+        "extensao_km": 2.5,
+        "caracteristicas": [
+          "urbanizada",
+          "turística",
+          "badalada"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.223,
+          -22.9877
+        ]
+      },
+      "properties": {
+        "id": "leblon",
+        "nome": "Leblon",
+        "status": "impropria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Leblon",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 1664,
+        "extensao_km": 1.5,
+        "caracteristicas": [
+          "urbanizada",
+          "nobre",
+          "familiar"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.2349,
+          -22.9932
+        ]
+      },
+      "properties": {
+        "id": "vidigal",
+        "nome": "Vidigal",
+        "status": "impropria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Vidigal",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 991,
+        "extensao_km": 0.4,
+        "caracteristicas": [
+          "pequena",
+          "pitoresca"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.2753,
+          -23.0038
+        ]
+      },
+      "properties": {
+        "id": "sao_conrado",
+        "nome": "São Conrado",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "São Conrado",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 567,
+        "extensao_km": 1.7,
+        "caracteristicas": [
+          "voo-livre",
+          "surf",
+          "tranquila"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.2879,
+          -23.0102
+        ]
+      },
+      "properties": {
+        "id": "joatinga",
+        "nome": "Joatinga",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Joá",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 624,
+        "extensao_km": 0.5,
+        "caracteristicas": [
+          "secreta",
+          "acesso-limitado",
+          "bela"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1736,
+          -22.9295
+        ]
+      },
+      "properties": {
+        "id": "flamengo",
+        "nome": "Flamengo",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Flamengo",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 715,
+        "extensao_km": 1.3,
+        "caracteristicas": [
+          "baía",
+          "esporte",
+          "parque"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.182,
+          -22.9519
+        ]
+      },
+      "properties": {
+        "id": "botafogo",
+        "nome": "Botafogo",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Botafogo",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 479,
+        "extensao_km": 0.9,
+        "caracteristicas": [
+          "baía",
+          "histórica",
+          "paisagem"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1637,
+          -22.9486
+        ]
+      },
+      "properties": {
+        "id": "urca",
+        "nome": "Urca",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Urca",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 653,
+        "extensao_km": 0.4,
+        "caracteristicas": [
+          "tranquila",
+          "baía",
+          "natureza"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1607,
+          -22.9533
+        ]
+      },
+      "properties": {
+        "id": "vermelha",
+        "nome": "Vermelha",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Urca",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 56,
+        "extensao_km": 0.3,
+        "caracteristicas": [
+          "pequena",
+          "mergulho",
+          "peixe-boi"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.174,
+          -22.9232
+        ]
+      },
+      "properties": {
+        "id": "gloria",
+        "nome": "Glória",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Glória",
+        "regiao": "Zona Sul",
+        "coliformes_fecais": 213,
+        "extensao_km": 0.5,
+        "caracteristicas": [
+          "baía",
+          "histórica"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.3658,
+          -23.0048
+        ]
+      },
+      "properties": {
+        "id": "barra",
+        "nome": "Barra da Tijuca",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Barra da Tijuca",
+        "regiao": "Zona Oeste",
+        "coliformes_fecais": 398,
+        "extensao_km": 18.0,
+        "caracteristicas": [
+          "maior-praia",
+          "surf",
+          "modernа"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.4626,
+          -23.0241
+        ]
+      },
+      "properties": {
+        "id": "recreio",
+        "nome": "Recreio dos Bandeirantes",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Recreio dos Bandeirantes",
+        "regiao": "Zona Oeste",
+        "coliformes_fecais": 270,
+        "extensao_km": 5.0,
+        "caracteristicas": [
+          "familiar",
+          "tranquila",
+          "natureza"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.4921,
+          -23.031
+        ]
+      },
+      "properties": {
+        "id": "macumba",
+        "nome": "Macumba",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Recreio dos Bandeirantes",
+        "regiao": "Zona Oeste",
+        "coliformes_fecais": 394,
+        "extensao_km": 1.5,
+        "caracteristicas": [
+          "surf",
+          "alternativa",
+          "jovem"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.5043,
+          -23.0415
+        ]
+      },
+      "properties": {
+        "id": "prainha",
+        "nome": "Prainha",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Recreio dos Bandeirantes",
+        "regiao": "Zona Oeste",
+        "coliformes_fecais": 439,
+        "extensao_km": 0.7,
+        "caracteristicas": [
+          "surf",
+          "preservada",
+          "APA"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.5283,
+          -23.0548
+        ]
+      },
+      "properties": {
+        "id": "grumari",
+        "nome": "Grumari",
+        "status": "impropria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Grumari",
+        "regiao": "Zona Oeste",
+        "coliformes_fecais": 1504,
+        "extensao_km": 1.5,
+        "caracteristicas": [
+          "APA",
+          "selvagem",
+          "nudismo"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.5346,
+          -23.0582
+        ]
+      },
+      "properties": {
+        "id": "abricó",
+        "nome": "Abricó",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Grumari",
+        "regiao": "Zona Oeste",
+        "coliformes_fecais": 94,
+        "extensao_km": 0.4,
+        "caracteristicas": [
+          "nudismo-oficial",
+          "pequena",
+          "isolada"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.7087,
+          -22.9774
+        ]
+      },
+      "properties": {
+        "id": "sepetiba",
+        "nome": "Sepetiba",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Sepetiba",
+        "regiao": "Zona Oeste",
+        "coliformes_fecais": 599,
+        "extensao_km": 3.0,
+        "caracteristicas": [
+          "baía",
+          "pesca",
+          "tranquila"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1106,
+          -22.9035
+        ]
+      },
+      "properties": {
+        "id": "icarai",
+        "nome": "Icaraí",
+        "status": "impropria",
+        "municipio": "Niterói",
+        "bairro": "Icaraí",
+        "regiao": "Niterói",
+        "coliformes_fecais": 1575,
+        "extensao_km": 1.2,
+        "caracteristicas": [
+          "urbanizada",
+          "familiar",
+          "baía"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.12,
+          -22.9231
+        ]
+      },
+      "properties": {
+        "id": "charitas",
+        "nome": "Charitas",
+        "status": "impropria",
+        "municipio": "Niterói",
+        "bairro": "Charitas",
+        "regiao": "Niterói",
+        "coliformes_fecais": 1400,
+        "extensao_km": 0.6,
+        "caracteristicas": [
+          "baía",
+          "calma",
+          "famílias"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1118,
+          -22.9354
+        ]
+      },
+      "properties": {
+        "id": "jurujuba",
+        "nome": "Jurujuba",
+        "status": "propria",
+        "municipio": "Niterói",
+        "bairro": "Jurujuba",
+        "regiao": "Niterói",
+        "coliformes_fecais": 683,
+        "extensao_km": 0.5,
+        "caracteristicas": [
+          "pesca",
+          "frutos-do-mar",
+          "baía"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.0534,
+          -22.9645
+        ]
+      },
+      "properties": {
+        "id": "camboinhas",
+        "nome": "Camboinhas",
+        "status": "propria",
+        "municipio": "Niterói",
+        "bairro": "Camboinhas",
+        "regiao": "Niterói",
+        "coliformes_fecais": 420,
+        "extensao_km": 1.0,
+        "caracteristicas": [
+          "mar-aberto",
+          "tranquila"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.0356,
+          -22.9681
+        ]
+      },
+      "properties": {
+        "id": "itacoatiara",
+        "nome": "Itacoatiara",
+        "status": "propria",
+        "municipio": "Niterói",
+        "bairro": "Itacoatiara",
+        "regiao": "Niterói",
+        "coliformes_fecais": 771,
+        "extensao_km": 1.5,
+        "caracteristicas": [
+          "surf",
+          "pedras",
+          "rochosa",
+          "linda"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.0493,
+          -22.9591
+        ]
+      },
+      "properties": {
+        "id": "itaipu",
+        "nome": "Itaipu",
+        "status": "impropria",
+        "municipio": "Niterói",
+        "bairro": "Itaipu",
+        "regiao": "Niterói",
+        "coliformes_fecais": 2154,
+        "extensao_km": 2.0,
+        "caracteristicas": [
+          "pesca",
+          "surf",
+          "lagoa"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.0588,
+          -22.9554
+        ]
+      },
+      "properties": {
+        "id": "piratininga",
+        "nome": "Piratininga",
+        "status": "propria",
+        "municipio": "Niterói",
+        "bairro": "Piratininga",
+        "regiao": "Niterói",
+        "coliformes_fecais": 346,
+        "extensao_km": 1.8,
+        "caracteristicas": [
+          "lagoa",
+          "surf",
+          "kite"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.0173,
+          -22.9714
+        ]
+      },
+      "properties": {
+        "id": "arraial_praia_grande",
+        "nome": "Praia Grande (Arraial do Cabo)",
+        "status": "propria",
+        "municipio": "Arraial do Cabo",
+        "bairro": "Centro",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 288,
+        "extensao_km": 2.5,
+        "caracteristicas": [
+          "cristalina",
+          "mergulho",
+          "turismo"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.0297,
+          -22.9649
+        ]
+      },
+      "properties": {
+        "id": "arraial_pontal",
+        "nome": "Pontal do Atalaia (Arraial do Cabo)",
+        "status": "propria",
+        "municipio": "Arraial do Cabo",
+        "bairro": "Pontal",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 439,
+        "extensao_km": 1.0,
+        "caracteristicas": [
+          "mergulho",
+          "snorkel",
+          "barco"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.019,
+          -22.8776
+        ]
+      },
+      "properties": {
+        "id": "cabo_frio_forte",
+        "nome": "Praia do Forte (Cabo Frio)",
+        "status": "propria",
+        "municipio": "Cabo Frio",
+        "bairro": "Centro",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 700,
+        "extensao_km": 1.5,
+        "caracteristicas": [
+          "dunas",
+          "kite",
+          "ventos"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.0608,
+          -22.8445
+        ]
+      },
+      "properties": {
+        "id": "cabo_frio_peró",
+        "nome": "Peró (Cabo Frio)",
+        "status": "propria",
+        "municipio": "Cabo Frio",
+        "bairro": "Peró",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 216,
+        "extensao_km": 7.0,
+        "caracteristicas": [
+          "APA",
+          "dunas",
+          "selvagem"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -41.8926,
+          -22.774
+        ]
+      },
+      "properties": {
+        "id": "buzios_geribá",
+        "nome": "Geribá (Búzios)",
+        "status": "propria",
+        "municipio": "Armação dos Búzios",
+        "bairro": "Geribá",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 264,
+        "extensao_km": 2.5,
+        "caracteristicas": [
+          "surf",
+          "festas",
+          "jovem"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -41.9001,
+          -22.7838
+        ]
+      },
+      "properties": {
+        "id": "buzios_ferradura",
+        "nome": "Ferradura (Búzios)",
+        "status": "propria",
+        "municipio": "Armação dos Búzios",
+        "bairro": "Ferradura",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 768,
+        "extensao_km": 0.8,
+        "caracteristicas": [
+          "calma",
+          "familiar",
+          "catamarã"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -41.8856,
+          -22.7485
+        ]
+      },
+      "properties": {
+        "id": "buzios_joao_fernandes",
+        "nome": "João Fernandes (Búzios)",
+        "status": "propria",
+        "municipio": "Armação dos Búzios",
+        "bairro": "João Fernandes",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 713,
+        "extensao_km": 0.6,
+        "caracteristicas": [
+          "mergulho",
+          "snorkel",
+          "clear"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.5104,
+          -22.9249
+        ]
+      },
+      "properties": {
+        "id": "saquarema",
+        "nome": "Saquarema",
+        "status": "impropria",
+        "municipio": "Saquarema",
+        "bairro": "Itaúna",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 2100,
+        "extensao_km": 4.0,
+        "caracteristicas": [
+          "surf",
+          "campeonatos",
+          "vento"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -42.3421,
+          -22.8726
+        ]
+      },
+      "properties": {
+        "id": "araruama",
+        "nome": "Araruama",
+        "status": "propria",
+        "municipio": "Araruama",
+        "bairro": "Centro",
+        "regiao": "Região dos Lagos",
+        "coliformes_fecais": 796,
+        "extensao_km": 3.0,
+        "caracteristicas": [
+          "lagoa",
+          "kite",
+          "vento"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -44.3139,
+          -23.0014
+        ]
+      },
+      "properties": {
+        "id": "angra_bonfim",
+        "nome": "Bonfim (Angra dos Reis)",
+        "status": "propria",
+        "municipio": "Angra dos Reis",
+        "bairro": "Bonfim",
+        "regiao": "Costa Verde",
+        "coliformes_fecais": 523,
+        "extensao_km": 1.0,
+        "caracteristicas": [
+          "baía",
+          "camping",
+          "natureza"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -44.3082,
+          -22.9678
+        ]
+      },
+      "properties": {
+        "id": "angra_do_col",
+        "nome": "Do Col (Angra dos Reis)",
+        "status": "propria",
+        "municipio": "Angra dos Reis",
+        "bairro": "Centro",
+        "regiao": "Costa Verde",
+        "coliformes_fecais": 705,
+        "extensao_km": 0.6,
+        "caracteristicas": [
+          "baía",
+          "mergulho",
+          "ilha-perto"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -44.625,
+          -23.267
+        ]
+      },
+      "properties": {
+        "id": "paraty_paraty_mirim",
+        "nome": "Paraty-Mirim",
+        "status": "propria",
+        "municipio": "Paraty",
+        "bairro": "Paraty-Mirim",
+        "regiao": "Costa Verde",
+        "coliformes_fecais": 274,
+        "extensao_km": 1.2,
+        "caracteristicas": [
+          "histórica",
+          "preservada",
+          "turismo"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -44.7218,
+          -23.3296
+        ]
+      },
+      "properties": {
+        "id": "paraty_trindade",
+        "nome": "Trindade (Paraty)",
+        "status": "propria",
+        "municipio": "Paraty",
+        "bairro": "Trindade",
+        "regiao": "Costa Verde",
+        "coliformes_fecais": 107,
+        "extensao_km": 1.0,
+        "caracteristicas": [
+          "hippie",
+          "lagoa",
+          "cachoeira"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -44.0418,
+          -22.9591
+        ]
+      },
+      "properties": {
+        "id": "mangaratiba",
+        "nome": "Mangaratiba",
+        "status": "propria",
+        "municipio": "Mangaratiba",
+        "bairro": "Centro",
+        "regiao": "Costa Verde",
+        "coliformes_fecais": 82,
+        "extensao_km": 1.5,
+        "caracteristicas": [
+          "pesca",
+          "baía",
+          "embarque-ilhas"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.2446,
+          -22.8608
+        ]
+      },
+      "properties": {
+        "id": "ramos",
+        "nome": "Ramos",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Ramos",
+        "regiao": "Baía de Guanabara",
+        "coliformes_fecais": 460,
+        "extensao_km": 1.0,
+        "caracteristicas": [
+          "baía",
+          "periférica"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.2658,
+          -22.8524
+        ]
+      },
+      "properties": {
+        "id": "olaria",
+        "nome": "Olaria",
+        "status": "impropria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Olaria",
+        "regiao": "Baía de Guanabara",
+        "coliformes_fecais": 1232,
+        "extensao_km": 0.8,
+        "caracteristicas": [
+          "baía",
+          "periférica"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#e74c3c",
+        "marker-symbol": "no-entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1952,
+          -22.8012
+        ]
+      },
+      "properties": {
+        "id": "ilha_do_governador",
+        "nome": "Praia da Bica (Ilha do Governador)",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Ilha do Governador",
+        "regiao": "Baía de Guanabara",
+        "coliformes_fecais": 630,
+        "extensao_km": 0.5,
+        "caracteristicas": [
+          "ilha",
+          "baía",
+          "pesca"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.1082,
+          -22.7681
+        ]
+      },
+      "properties": {
+        "id": "paqueta",
+        "nome": "Paquetá",
+        "status": "propria",
+        "municipio": "Rio de Janeiro",
+        "bairro": "Ilha de Paquetá",
+        "regiao": "Baía de Guanabara",
+        "coliformes_fecais": 372,
+        "extensao_km": 0.8,
+        "caracteristicas": [
+          "ilha",
+          "bicicleta",
+          "sem-carros",
+          "histórica"
+        ],
+        "data_coleta": "2026-04-06",
+        "fonte": "MOCK_DATA",
+        "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+        "marker-color": "#2ecc71",
+        "marker-symbol": "beach"
+      }
+    }
+  ]
+}

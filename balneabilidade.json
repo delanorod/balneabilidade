@@ -1,0 +1,1079 @@
+[
+  {
+    "praia_id": "leme",
+    "praia_nome": "Leme",
+    "status": "propria",
+    "coliformes_fecais": 75,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9635,
+      "longitude": -43.1674
+    },
+    "bairro": "Leme",
+    "extensao_km": 0.8,
+    "caracteristicas": [
+      "urbanizada",
+      "familiar",
+      "acessível"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "copacabana",
+    "praia_nome": "Copacabana",
+    "status": "propria",
+    "coliformes_fecais": 300,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9711,
+      "longitude": -43.1823
+    },
+    "bairro": "Copacabana",
+    "extensao_km": 4.0,
+    "caracteristicas": [
+      "urbanizada",
+      "turística",
+      "agitada"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "arpoador",
+    "praia_nome": "Arpoador",
+    "status": "propria",
+    "coliformes_fecais": 154,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9876,
+      "longitude": -43.194
+    },
+    "bairro": "Ipanema",
+    "extensao_km": 0.5,
+    "caracteristicas": [
+      "surf",
+      "pôr-do-sol",
+      "rochosa"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "ipanema",
+    "praia_nome": "Ipanema",
+    "status": "propria",
+    "coliformes_fecais": 608,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9868,
+      "longitude": -43.204
+    },
+    "bairro": "Ipanema",
+    "extensao_km": 2.5,
+    "caracteristicas": [
+      "urbanizada",
+      "turística",
+      "badalada"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "leblon",
+    "praia_nome": "Leblon",
+    "status": "impropria",
+    "coliformes_fecais": 1664,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9877,
+      "longitude": -43.223
+    },
+    "bairro": "Leblon",
+    "extensao_km": 1.5,
+    "caracteristicas": [
+      "urbanizada",
+      "nobre",
+      "familiar"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "vidigal",
+    "praia_nome": "Vidigal",
+    "status": "impropria",
+    "coliformes_fecais": 991,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9932,
+      "longitude": -43.2349
+    },
+    "bairro": "Vidigal",
+    "extensao_km": 0.4,
+    "caracteristicas": [
+      "pequena",
+      "pitoresca"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "sao_conrado",
+    "praia_nome": "São Conrado",
+    "status": "propria",
+    "coliformes_fecais": 567,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -23.0038,
+      "longitude": -43.2753
+    },
+    "bairro": "São Conrado",
+    "extensao_km": 1.7,
+    "caracteristicas": [
+      "voo-livre",
+      "surf",
+      "tranquila"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "joatinga",
+    "praia_nome": "Joatinga",
+    "status": "propria",
+    "coliformes_fecais": 624,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -23.0102,
+      "longitude": -43.2879
+    },
+    "bairro": "Joá",
+    "extensao_km": 0.5,
+    "caracteristicas": [
+      "secreta",
+      "acesso-limitado",
+      "bela"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "flamengo",
+    "praia_nome": "Flamengo",
+    "status": "propria",
+    "coliformes_fecais": 715,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9295,
+      "longitude": -43.1736
+    },
+    "bairro": "Flamengo",
+    "extensao_km": 1.3,
+    "caracteristicas": [
+      "baía",
+      "esporte",
+      "parque"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "botafogo",
+    "praia_nome": "Botafogo",
+    "status": "propria",
+    "coliformes_fecais": 479,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9519,
+      "longitude": -43.182
+    },
+    "bairro": "Botafogo",
+    "extensao_km": 0.9,
+    "caracteristicas": [
+      "baía",
+      "histórica",
+      "paisagem"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.481325",
+    "url_inea": null
+  },
+  {
+    "praia_id": "urca",
+    "praia_nome": "Urca",
+    "status": "propria",
+    "coliformes_fecais": 653,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9486,
+      "longitude": -43.1637
+    },
+    "bairro": "Urca",
+    "extensao_km": 0.4,
+    "caracteristicas": [
+      "tranquila",
+      "baía",
+      "natureza"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "vermelha",
+    "praia_nome": "Vermelha",
+    "status": "propria",
+    "coliformes_fecais": 56,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9533,
+      "longitude": -43.1607
+    },
+    "bairro": "Urca",
+    "extensao_km": 0.3,
+    "caracteristicas": [
+      "pequena",
+      "mergulho",
+      "peixe-boi"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "gloria",
+    "praia_nome": "Glória",
+    "status": "propria",
+    "coliformes_fecais": 213,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Sul",
+    "coordenadas": {
+      "latitude": -22.9232,
+      "longitude": -43.174
+    },
+    "bairro": "Glória",
+    "extensao_km": 0.5,
+    "caracteristicas": [
+      "baía",
+      "histórica"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "barra",
+    "praia_nome": "Barra da Tijuca",
+    "status": "propria",
+    "coliformes_fecais": 398,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Oeste",
+    "coordenadas": {
+      "latitude": -23.0048,
+      "longitude": -43.3658
+    },
+    "bairro": "Barra da Tijuca",
+    "extensao_km": 18.0,
+    "caracteristicas": [
+      "maior-praia",
+      "surf",
+      "modernа"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "recreio",
+    "praia_nome": "Recreio dos Bandeirantes",
+    "status": "propria",
+    "coliformes_fecais": 270,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Oeste",
+    "coordenadas": {
+      "latitude": -23.0241,
+      "longitude": -43.4626
+    },
+    "bairro": "Recreio dos Bandeirantes",
+    "extensao_km": 5.0,
+    "caracteristicas": [
+      "familiar",
+      "tranquila",
+      "natureza"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "macumba",
+    "praia_nome": "Macumba",
+    "status": "propria",
+    "coliformes_fecais": 394,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Oeste",
+    "coordenadas": {
+      "latitude": -23.031,
+      "longitude": -43.4921
+    },
+    "bairro": "Recreio dos Bandeirantes",
+    "extensao_km": 1.5,
+    "caracteristicas": [
+      "surf",
+      "alternativa",
+      "jovem"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "prainha",
+    "praia_nome": "Prainha",
+    "status": "propria",
+    "coliformes_fecais": 439,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Oeste",
+    "coordenadas": {
+      "latitude": -23.0415,
+      "longitude": -43.5043
+    },
+    "bairro": "Recreio dos Bandeirantes",
+    "extensao_km": 0.7,
+    "caracteristicas": [
+      "surf",
+      "preservada",
+      "APA"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "grumari",
+    "praia_nome": "Grumari",
+    "status": "impropria",
+    "coliformes_fecais": 1504,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Oeste",
+    "coordenadas": {
+      "latitude": -23.0548,
+      "longitude": -43.5283
+    },
+    "bairro": "Grumari",
+    "extensao_km": 1.5,
+    "caracteristicas": [
+      "APA",
+      "selvagem",
+      "nudismo"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "abricó",
+    "praia_nome": "Abricó",
+    "status": "propria",
+    "coliformes_fecais": 94,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Oeste",
+    "coordenadas": {
+      "latitude": -23.0582,
+      "longitude": -43.5346
+    },
+    "bairro": "Grumari",
+    "extensao_km": 0.4,
+    "caracteristicas": [
+      "nudismo-oficial",
+      "pequena",
+      "isolada"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "sepetiba",
+    "praia_nome": "Sepetiba",
+    "status": "propria",
+    "coliformes_fecais": 599,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Zona Oeste",
+    "coordenadas": {
+      "latitude": -22.9774,
+      "longitude": -43.7087
+    },
+    "bairro": "Sepetiba",
+    "extensao_km": 3.0,
+    "caracteristicas": [
+      "baía",
+      "pesca",
+      "tranquila"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "icarai",
+    "praia_nome": "Icaraí",
+    "status": "impropria",
+    "coliformes_fecais": 1575,
+    "data_coleta": "2026-04-06",
+    "municipio": "Niterói",
+    "regiao": "Niterói",
+    "coordenadas": {
+      "latitude": -22.9035,
+      "longitude": -43.1106
+    },
+    "bairro": "Icaraí",
+    "extensao_km": 1.2,
+    "caracteristicas": [
+      "urbanizada",
+      "familiar",
+      "baía"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "charitas",
+    "praia_nome": "Charitas",
+    "status": "impropria",
+    "coliformes_fecais": 1400,
+    "data_coleta": "2026-04-06",
+    "municipio": "Niterói",
+    "regiao": "Niterói",
+    "coordenadas": {
+      "latitude": -22.9231,
+      "longitude": -43.12
+    },
+    "bairro": "Charitas",
+    "extensao_km": 0.6,
+    "caracteristicas": [
+      "baía",
+      "calma",
+      "famílias"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "jurujuba",
+    "praia_nome": "Jurujuba",
+    "status": "propria",
+    "coliformes_fecais": 683,
+    "data_coleta": "2026-04-06",
+    "municipio": "Niterói",
+    "regiao": "Niterói",
+    "coordenadas": {
+      "latitude": -22.9354,
+      "longitude": -43.1118
+    },
+    "bairro": "Jurujuba",
+    "extensao_km": 0.5,
+    "caracteristicas": [
+      "pesca",
+      "frutos-do-mar",
+      "baía"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "camboinhas",
+    "praia_nome": "Camboinhas",
+    "status": "propria",
+    "coliformes_fecais": 420,
+    "data_coleta": "2026-04-06",
+    "municipio": "Niterói",
+    "regiao": "Niterói",
+    "coordenadas": {
+      "latitude": -22.9645,
+      "longitude": -43.0534
+    },
+    "bairro": "Camboinhas",
+    "extensao_km": 1.0,
+    "caracteristicas": [
+      "mar-aberto",
+      "tranquila"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "itacoatiara",
+    "praia_nome": "Itacoatiara",
+    "status": "propria",
+    "coliformes_fecais": 771,
+    "data_coleta": "2026-04-06",
+    "municipio": "Niterói",
+    "regiao": "Niterói",
+    "coordenadas": {
+      "latitude": -22.9681,
+      "longitude": -43.0356
+    },
+    "bairro": "Itacoatiara",
+    "extensao_km": 1.5,
+    "caracteristicas": [
+      "surf",
+      "pedras",
+      "rochosa",
+      "linda"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.482368",
+    "url_inea": null
+  },
+  {
+    "praia_id": "itaipu",
+    "praia_nome": "Itaipu",
+    "status": "impropria",
+    "coliformes_fecais": 2154,
+    "data_coleta": "2026-04-06",
+    "municipio": "Niterói",
+    "regiao": "Niterói",
+    "coordenadas": {
+      "latitude": -22.9591,
+      "longitude": -43.0493
+    },
+    "bairro": "Itaipu",
+    "extensao_km": 2.0,
+    "caracteristicas": [
+      "pesca",
+      "surf",
+      "lagoa"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "piratininga",
+    "praia_nome": "Piratininga",
+    "status": "propria",
+    "coliformes_fecais": 346,
+    "data_coleta": "2026-04-06",
+    "municipio": "Niterói",
+    "regiao": "Niterói",
+    "coordenadas": {
+      "latitude": -22.9554,
+      "longitude": -43.0588
+    },
+    "bairro": "Piratininga",
+    "extensao_km": 1.8,
+    "caracteristicas": [
+      "lagoa",
+      "surf",
+      "kite"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "arraial_praia_grande",
+    "praia_nome": "Praia Grande (Arraial do Cabo)",
+    "status": "propria",
+    "coliformes_fecais": 288,
+    "data_coleta": "2026-04-06",
+    "municipio": "Arraial do Cabo",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.9714,
+      "longitude": -42.0173
+    },
+    "bairro": "Centro",
+    "extensao_km": 2.5,
+    "caracteristicas": [
+      "cristalina",
+      "mergulho",
+      "turismo"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "arraial_pontal",
+    "praia_nome": "Pontal do Atalaia (Arraial do Cabo)",
+    "status": "propria",
+    "coliformes_fecais": 439,
+    "data_coleta": "2026-04-06",
+    "municipio": "Arraial do Cabo",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.9649,
+      "longitude": -42.0297
+    },
+    "bairro": "Pontal",
+    "extensao_km": 1.0,
+    "caracteristicas": [
+      "mergulho",
+      "snorkel",
+      "barco"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "cabo_frio_forte",
+    "praia_nome": "Praia do Forte (Cabo Frio)",
+    "status": "propria",
+    "coliformes_fecais": 700,
+    "data_coleta": "2026-04-06",
+    "municipio": "Cabo Frio",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.8776,
+      "longitude": -42.019
+    },
+    "bairro": "Centro",
+    "extensao_km": 1.5,
+    "caracteristicas": [
+      "dunas",
+      "kite",
+      "ventos"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "cabo_frio_peró",
+    "praia_nome": "Peró (Cabo Frio)",
+    "status": "propria",
+    "coliformes_fecais": 216,
+    "data_coleta": "2026-04-06",
+    "municipio": "Cabo Frio",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.8445,
+      "longitude": -42.0608
+    },
+    "bairro": "Peró",
+    "extensao_km": 7.0,
+    "caracteristicas": [
+      "APA",
+      "dunas",
+      "selvagem"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "buzios_geribá",
+    "praia_nome": "Geribá (Búzios)",
+    "status": "propria",
+    "coliformes_fecais": 264,
+    "data_coleta": "2026-04-06",
+    "municipio": "Armação dos Búzios",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.774,
+      "longitude": -41.8926
+    },
+    "bairro": "Geribá",
+    "extensao_km": 2.5,
+    "caracteristicas": [
+      "surf",
+      "festas",
+      "jovem"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "buzios_ferradura",
+    "praia_nome": "Ferradura (Búzios)",
+    "status": "propria",
+    "coliformes_fecais": 768,
+    "data_coleta": "2026-04-06",
+    "municipio": "Armação dos Búzios",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.7838,
+      "longitude": -41.9001
+    },
+    "bairro": "Ferradura",
+    "extensao_km": 0.8,
+    "caracteristicas": [
+      "calma",
+      "familiar",
+      "catamarã"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "buzios_joao_fernandes",
+    "praia_nome": "João Fernandes (Búzios)",
+    "status": "propria",
+    "coliformes_fecais": 713,
+    "data_coleta": "2026-04-06",
+    "municipio": "Armação dos Búzios",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.7485,
+      "longitude": -41.8856
+    },
+    "bairro": "João Fernandes",
+    "extensao_km": 0.6,
+    "caracteristicas": [
+      "mergulho",
+      "snorkel",
+      "clear"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "saquarema",
+    "praia_nome": "Saquarema",
+    "status": "impropria",
+    "coliformes_fecais": 2100,
+    "data_coleta": "2026-04-06",
+    "municipio": "Saquarema",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.9249,
+      "longitude": -42.5104
+    },
+    "bairro": "Itaúna",
+    "extensao_km": 4.0,
+    "caracteristicas": [
+      "surf",
+      "campeonatos",
+      "vento"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "araruama",
+    "praia_nome": "Araruama",
+    "status": "propria",
+    "coliformes_fecais": 796,
+    "data_coleta": "2026-04-06",
+    "municipio": "Araruama",
+    "regiao": "Região dos Lagos",
+    "coordenadas": {
+      "latitude": -22.8726,
+      "longitude": -42.3421
+    },
+    "bairro": "Centro",
+    "extensao_km": 3.0,
+    "caracteristicas": [
+      "lagoa",
+      "kite",
+      "vento"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "angra_bonfim",
+    "praia_nome": "Bonfim (Angra dos Reis)",
+    "status": "propria",
+    "coliformes_fecais": 523,
+    "data_coleta": "2026-04-06",
+    "municipio": "Angra dos Reis",
+    "regiao": "Costa Verde",
+    "coordenadas": {
+      "latitude": -23.0014,
+      "longitude": -44.3139
+    },
+    "bairro": "Bonfim",
+    "extensao_km": 1.0,
+    "caracteristicas": [
+      "baía",
+      "camping",
+      "natureza"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "angra_do_col",
+    "praia_nome": "Do Col (Angra dos Reis)",
+    "status": "propria",
+    "coliformes_fecais": 705,
+    "data_coleta": "2026-04-06",
+    "municipio": "Angra dos Reis",
+    "regiao": "Costa Verde",
+    "coordenadas": {
+      "latitude": -22.9678,
+      "longitude": -44.3082
+    },
+    "bairro": "Centro",
+    "extensao_km": 0.6,
+    "caracteristicas": [
+      "baía",
+      "mergulho",
+      "ilha-perto"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "paraty_paraty_mirim",
+    "praia_nome": "Paraty-Mirim",
+    "status": "propria",
+    "coliformes_fecais": 274,
+    "data_coleta": "2026-04-06",
+    "municipio": "Paraty",
+    "regiao": "Costa Verde",
+    "coordenadas": {
+      "latitude": -23.267,
+      "longitude": -44.625
+    },
+    "bairro": "Paraty-Mirim",
+    "extensao_km": 1.2,
+    "caracteristicas": [
+      "histórica",
+      "preservada",
+      "turismo"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "paraty_trindade",
+    "praia_nome": "Trindade (Paraty)",
+    "status": "propria",
+    "coliformes_fecais": 107,
+    "data_coleta": "2026-04-06",
+    "municipio": "Paraty",
+    "regiao": "Costa Verde",
+    "coordenadas": {
+      "latitude": -23.3296,
+      "longitude": -44.7218
+    },
+    "bairro": "Trindade",
+    "extensao_km": 1.0,
+    "caracteristicas": [
+      "hippie",
+      "lagoa",
+      "cachoeira"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "mangaratiba",
+    "praia_nome": "Mangaratiba",
+    "status": "propria",
+    "coliformes_fecais": 82,
+    "data_coleta": "2026-04-06",
+    "municipio": "Mangaratiba",
+    "regiao": "Costa Verde",
+    "coordenadas": {
+      "latitude": -22.9591,
+      "longitude": -44.0418
+    },
+    "bairro": "Centro",
+    "extensao_km": 1.5,
+    "caracteristicas": [
+      "pesca",
+      "baía",
+      "embarque-ilhas"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "ramos",
+    "praia_nome": "Ramos",
+    "status": "propria",
+    "coliformes_fecais": 460,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Baía de Guanabara",
+    "coordenadas": {
+      "latitude": -22.8608,
+      "longitude": -43.2446
+    },
+    "bairro": "Ramos",
+    "extensao_km": 1.0,
+    "caracteristicas": [
+      "baía",
+      "periférica"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "olaria",
+    "praia_nome": "Olaria",
+    "status": "impropria",
+    "coliformes_fecais": 1232,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Baía de Guanabara",
+    "coordenadas": {
+      "latitude": -22.8524,
+      "longitude": -43.2658
+    },
+    "bairro": "Olaria",
+    "extensao_km": 0.8,
+    "caracteristicas": [
+      "baía",
+      "periférica"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "ilha_do_governador",
+    "praia_nome": "Praia da Bica (Ilha do Governador)",
+    "status": "propria",
+    "coliformes_fecais": 630,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Baía de Guanabara",
+    "coordenadas": {
+      "latitude": -22.8012,
+      "longitude": -43.1952
+    },
+    "bairro": "Ilha do Governador",
+    "extensao_km": 0.5,
+    "caracteristicas": [
+      "ilha",
+      "baía",
+      "pesca"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  },
+  {
+    "praia_id": "paqueta",
+    "praia_nome": "Paquetá",
+    "status": "propria",
+    "coliformes_fecais": 372,
+    "data_coleta": "2026-04-06",
+    "municipio": "Rio de Janeiro",
+    "regiao": "Baía de Guanabara",
+    "coordenadas": {
+      "latitude": -22.7681,
+      "longitude": -43.1082
+    },
+    "bairro": "Ilha de Paquetá",
+    "extensao_km": 0.8,
+    "caracteristicas": [
+      "ilha",
+      "bicicleta",
+      "sem-carros",
+      "histórica"
+    ],
+    "fonte": "MOCK_DATA",
+    "observacoes": "⚠️ Dados simulados — não usar para decisões reais",
+    "timestamp": "2026-04-06T14:10:59.483322",
+    "url_inea": null
+  }
+]

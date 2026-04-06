@@ -1,0 +1,46 @@
+praia_id,nome,status,municipio,bairro,regiao,latitude,longitude,coliformes_fecais,extensao_km,data_coleta,fonte,observacoes
+leme,Leme,propria,Rio de Janeiro,Leme,Zona Sul,-22.9635,-43.1674,75,0.8,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+copacabana,Copacabana,propria,Rio de Janeiro,Copacabana,Zona Sul,-22.9711,-43.1823,300,4.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+arpoador,Arpoador,propria,Rio de Janeiro,Ipanema,Zona Sul,-22.9876,-43.194,154,0.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+ipanema,Ipanema,propria,Rio de Janeiro,Ipanema,Zona Sul,-22.9868,-43.204,608,2.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+leblon,Leblon,impropria,Rio de Janeiro,Leblon,Zona Sul,-22.9877,-43.223,1664,1.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+vidigal,Vidigal,impropria,Rio de Janeiro,Vidigal,Zona Sul,-22.9932,-43.2349,991,0.4,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+sao_conrado,São Conrado,propria,Rio de Janeiro,São Conrado,Zona Sul,-23.0038,-43.2753,567,1.7,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+joatinga,Joatinga,propria,Rio de Janeiro,Joá,Zona Sul,-23.0102,-43.2879,624,0.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+flamengo,Flamengo,propria,Rio de Janeiro,Flamengo,Zona Sul,-22.9295,-43.1736,715,1.3,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+botafogo,Botafogo,propria,Rio de Janeiro,Botafogo,Zona Sul,-22.9519,-43.182,479,0.9,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+urca,Urca,propria,Rio de Janeiro,Urca,Zona Sul,-22.9486,-43.1637,653,0.4,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+vermelha,Vermelha,propria,Rio de Janeiro,Urca,Zona Sul,-22.9533,-43.1607,56,0.3,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+gloria,Glória,propria,Rio de Janeiro,Glória,Zona Sul,-22.9232,-43.174,213,0.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+barra,Barra da Tijuca,propria,Rio de Janeiro,Barra da Tijuca,Zona Oeste,-23.0048,-43.3658,398,18.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+recreio,Recreio dos Bandeirantes,propria,Rio de Janeiro,Recreio dos Bandeirantes,Zona Oeste,-23.0241,-43.4626,270,5.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+macumba,Macumba,propria,Rio de Janeiro,Recreio dos Bandeirantes,Zona Oeste,-23.031,-43.4921,394,1.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+prainha,Prainha,propria,Rio de Janeiro,Recreio dos Bandeirantes,Zona Oeste,-23.0415,-43.5043,439,0.7,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+grumari,Grumari,impropria,Rio de Janeiro,Grumari,Zona Oeste,-23.0548,-43.5283,1504,1.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+abricó,Abricó,propria,Rio de Janeiro,Grumari,Zona Oeste,-23.0582,-43.5346,94,0.4,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+sepetiba,Sepetiba,propria,Rio de Janeiro,Sepetiba,Zona Oeste,-22.9774,-43.7087,599,3.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+icarai,Icaraí,impropria,Niterói,Icaraí,Niterói,-22.9035,-43.1106,1575,1.2,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+charitas,Charitas,impropria,Niterói,Charitas,Niterói,-22.9231,-43.12,1400,0.6,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+jurujuba,Jurujuba,propria,Niterói,Jurujuba,Niterói,-22.9354,-43.1118,683,0.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+camboinhas,Camboinhas,propria,Niterói,Camboinhas,Niterói,-22.9645,-43.0534,420,1.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+itacoatiara,Itacoatiara,propria,Niterói,Itacoatiara,Niterói,-22.9681,-43.0356,771,1.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+itaipu,Itaipu,impropria,Niterói,Itaipu,Niterói,-22.9591,-43.0493,2154,2.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+piratininga,Piratininga,propria,Niterói,Piratininga,Niterói,-22.9554,-43.0588,346,1.8,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+arraial_praia_grande,Praia Grande (Arraial do Cabo),propria,Arraial do Cabo,Centro,Região dos Lagos,-22.9714,-42.0173,288,2.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+arraial_pontal,Pontal do Atalaia (Arraial do Cabo),propria,Arraial do Cabo,Pontal,Região dos Lagos,-22.9649,-42.0297,439,1.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+cabo_frio_forte,Praia do Forte (Cabo Frio),propria,Cabo Frio,Centro,Região dos Lagos,-22.8776,-42.019,700,1.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+cabo_frio_peró,Peró (Cabo Frio),propria,Cabo Frio,Peró,Região dos Lagos,-22.8445,-42.0608,216,7.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+buzios_geribá,Geribá (Búzios),propria,Armação dos Búzios,Geribá,Região dos Lagos,-22.774,-41.8926,264,2.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+buzios_ferradura,Ferradura (Búzios),propria,Armação dos Búzios,Ferradura,Região dos Lagos,-22.7838,-41.9001,768,0.8,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+buzios_joao_fernandes,João Fernandes (Búzios),propria,Armação dos Búzios,João Fernandes,Região dos Lagos,-22.7485,-41.8856,713,0.6,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+saquarema,Saquarema,impropria,Saquarema,Itaúna,Região dos Lagos,-22.9249,-42.5104,2100,4.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+araruama,Araruama,propria,Araruama,Centro,Região dos Lagos,-22.8726,-42.3421,796,3.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+angra_bonfim,Bonfim (Angra dos Reis),propria,Angra dos Reis,Bonfim,Costa Verde,-23.0014,-44.3139,523,1.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+angra_do_col,Do Col (Angra dos Reis),propria,Angra dos Reis,Centro,Costa Verde,-22.9678,-44.3082,705,0.6,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+paraty_paraty_mirim,Paraty-Mirim,propria,Paraty,Paraty-Mirim,Costa Verde,-23.267,-44.625,274,1.2,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+paraty_trindade,Trindade (Paraty),propria,Paraty,Trindade,Costa Verde,-23.3296,-44.7218,107,1.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+mangaratiba,Mangaratiba,propria,Mangaratiba,Centro,Costa Verde,-22.9591,-44.0418,82,1.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+ramos,Ramos,propria,Rio de Janeiro,Ramos,Baía de Guanabara,-22.8608,-43.2446,460,1.0,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+olaria,Olaria,impropria,Rio de Janeiro,Olaria,Baía de Guanabara,-22.8524,-43.2658,1232,0.8,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+ilha_do_governador,Praia da Bica (Ilha do Governador),propria,Rio de Janeiro,Ilha do Governador,Baía de Guanabara,-22.8012,-43.1952,630,0.5,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
+paqueta,Paquetá,propria,Rio de Janeiro,Ilha de Paquetá,Baía de Guanabara,-22.7681,-43.1082,372,0.8,2026-04-06,MOCK_DATA,⚠️ Dados simulados — não usar para decisões reais
