@@ -9,7 +9,6 @@ import json
 from datetime import datetime
 
 import extrator_ondasZSul
-from extrator_ondasZSul import PRAIAS
 from inea_scraper2 import INEAScraper
 
 COORDENADAS = {
@@ -102,29 +101,23 @@ COORDENADAS = {
 
 dados_finais = []
 
-for praia in PRAIAS.keys():
-    coord = COORDENADAS.get(praia, {})
+for praia, bal_data in balneabilidade.items():
 
-    lat = coord.get("lat")
-    lon = coord.get("lon")
+    status = (bal_data.get("status") or "").lower()
 
     df = ondas.get(praia)
 
     if df is not None and not df.empty:
-
         linha = df.iloc[0]
-
         onda = float(linha["Onda (m)"])
         vento = float(linha["Vento (km/h)"])
-
     else:
-
         onda = None
         vento = None
 
-    bal = balneabilidade.get(praia, {})
-
-    status = bal.get("status")
+    coord = COORDENADAS.get(praia, {})
+    lat = coord.get("lat")
+    lon = coord.get("lon")
 
     score = calcular_score(onda, vento, status)
 
