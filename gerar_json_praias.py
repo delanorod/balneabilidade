@@ -10,7 +10,7 @@ from datetime import datetime
 
 import extrator_ondasZSul
 from extrator_ondasZSul import PRAIAS
-from inea_scraper import INEAScraper
+from inea_scraper2 import INEAScraper
 
 COORDENADAS = {
     "Copacabana": {"lat": -22.9711, "lon": -43.1822},
