@@ -40,6 +40,7 @@ def obter_dados_ondas(lat, lon):
 def calcular_score(onda, vento):
     score = 0
 
+    # exemplo simples (você pode evoluir depois)
     if 0.5 <= onda <= 1.5:
         score += 5
     if vento < 15:
@@ -56,30 +57,24 @@ def main():
         lat = praia["lat"]
         lon = praia["lon"]
 
-        if not lat or not lon:
+        if not praia["lat"] or not praia["lon"]:
             continue
 
-        dados = obter_dados_ondas(lat, lon)
+        dados = obter_dados_ondas(lat,lon)
 
         time.sleep(1)
-
-        # BUG CORRIGIDO 1: dados.get["onda"] → dados.get("onda", 0)
-        onda = dados.get("onda", 0)
-        vento = dados.get("vento", 0)
-
-        # BUG CORRIGIDO 2: score não estava sendo calculado
-        score = calcular_score(onda, vento)
 
         resultado.append({
             "nome": praia["nome"],
             "lat": lat,
             "lon": lon,
-            "onda": onda,
-            "vento": vento,
+            "onda": dados.get["onda"],
+            "vento": dados.get["vento"],
             "score": score,
         })
+    return resultado
 
-    # BUG CORRIGIDO 3: return estava antes do with open(), agora está no lugar certo
+    # salva no arquivo usado pelo app
     with open("praias_rj.json", "w", encoding="utf-8") as f:
         json.dump({
             "ultima_atualizacao": datetime.utcnow().isoformat(),
@@ -87,8 +82,6 @@ def main():
         }, f, ensure_ascii=False, indent=2)
 
     print("✅ Arquivo atualizado com sucesso!")
-
-    return resultado
 
 
 if __name__ == "__main__":
