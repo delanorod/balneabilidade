@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-04-08T16:36:54.111886",
+  "ultima_atualizacao": "2026-04-08T17:01:42.531093",
   "fonte_balneabilidade": "praialimpa.net",
   "praia_recomendada": "Arpoador",
   "praias": [
@@ -774,7 +774,7 @@
       "score": 100
     },
     {
-      "nome": "Seca (Lagoa)",
+      "nome": "Seca",
       "lat": null,
       "lon": null,
       "onda": null,
@@ -1038,7 +1038,7 @@
       "score": 100
     },
     {
-      "nome": "Praia do Meio (Trindade)",
+      "nome": "Praia do Meio",
       "lat": null,
       "lon": null,
       "onda": null,
@@ -1067,7 +1067,7 @@
       "vento": null,
       "balneabilidade": "impropria",
       "data_coleta": null,
-      "observacoes": "Região: Rio de Janeiro",
+      "observacoes": "Região: Niterói",
       "score": -100
     },
     {
@@ -1347,17 +1347,6 @@
     },
     {
       "nome": "Forte",
-      "lat": null,
-      "lon": null,
-      "onda": null,
-      "vento": null,
-      "balneabilidade": "impropria",
-      "data_coleta": null,
-      "observacoes": "Região: Niterói",
-      "score": -100
-    },
-    {
-      "nome": "Barra",
       "lat": null,
       "lon": null,
       "onda": null,
