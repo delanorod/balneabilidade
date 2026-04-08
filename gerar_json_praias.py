@@ -11,6 +11,18 @@ from datetime import datetime
 import extrator_ondasZSul
 from praiascrapper2 import scrape_balneabilidade
 
+import re
+
+def normalizar_nome(nome):
+    # Remove sufixos entre parênteses: "Copacabana (Posto 2)" → "Copacabana"
+    nome = re.sub(r'\s*\(.*?\)', '', nome).strip()
+    # Apelidos conhecidos
+    apelidos = {
+        "recreio dos bandeirantes": "Recreio",
+        "barra": "Barra da Tijuca",
+    }
+    return apelidos.get(nome.lower(), nome)
+
 COORDENADAS = {
     "Copacabana": {"lat": -22.9711, "lon": -43.1822},
     "Arpoador": {"lat": -22.9870, "lon": -43.1910},
