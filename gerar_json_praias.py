@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 
 import extrator_ondasZSul
-from inea_scraper2 import INEAScraper
+from praiascrapper2 import scrape_balneabilidade
 
 COORDENADAS = {
     "Copacabana": {"lat": -22.9711, "lon": -43.1822},
@@ -63,38 +63,41 @@ def calcular_score(onda, vento, bal):
 
 print("Coletando dados de ondas...")
 
-ondas = extrator_ondasZSul.main()
+ondas_lista = extrator_ondasZSul.main()
+
+if not ondas_lista:
+    print("⚠️ Nenhum dado de ondas retornado")
+    ondas_lista = []
+
+# FIX: ondas_dict deve ficar FORA do bloco if, senão nunca é criado com dados reais
+ondas_dict = {
+    o["nome"].strip().lower(): o
+    for o in ondas_lista
+}
 
 
 # -----------------------------------------
 # COLETAR BALNEABILIDADE
 # -----------------------------------------
-
 print("Coletando dados de balneabilidade...")
 
-scraper = INEAScraper()
-bal_lista = scraper.scrape_balneabilidade()
+bal_lista = scrape_balneabilidade()
+fonte_balneabilidade = "praialimpa.net"
+
+print(f"✅ Balneabilidade coletada: {len(bal_lista)} praias")
 
 balneabilidade = {}
 
 for item in bal_lista:
 
-    balneabilidade[item.praia_nome] = {
-        "status": item.status
+    nome = item["praia"].strip()
+    nome = nome.split(" - ")[0]
+
+    balneabilidade[nome] = {
+        "status": item["status"],
+        "data_coleta": None,
+        "observacoes": f"Região: {item.get('regiao')}"
     }
-# -----------------------------------------
-# COORDENADAS DAS PRAIAS
-# -----------------------------------------
-
-COORDENADAS = {
-    "Copacabana": {"lat": -22.9711, "lon": -43.1822},
-    "Ipanema": {"lat": -22.9836, "lon": -43.2045},
-    "Leblon": {"lat": -22.9896, "lon": -43.2249},
-    "Barra da Tijuca": {"lat": -23.0016, "lon": -43.3659},
-    "Recreio": {"lat": -23.0293, "lon": -43.4800},
-}
-
-
 # -----------------------------------------
 # MONTAR LISTA FINAL
 # -----------------------------------------
@@ -103,40 +106,49 @@ dados_finais = []
 
 for praia, bal_data in balneabilidade.items():
 
-    status = (bal_data.get("status") or "").lower()
+    status = (bal_data.get("status") or "").strip().lower()
 
-    df = ondas.get(praia)
+    nome_normalizado = praia.strip().lower()
+    dados_onda = ondas_dict.get(nome_normalizado)
 
-    if df is not None and not df.empty:
-        linha = df.iloc[0]
-        onda = float(linha["Onda (m)"])
-        vento = float(linha["Vento (km/h)"])
+    if dados_onda:
+        onda = dados_onda.get("onda")
+        vento = dados_onda.get("vento")
+        lat = dados_onda.get("lat")
+        lon = dados_onda.get("lon")
     else:
         onda = None
         vento = None
-
-    coord = COORDENADAS.get(praia, {})
-    lat = coord.get("lat")
-    lon = coord.get("lon")
+        # fallback: coordenadas do cadastro fixo
+        coord = COORDENADAS.get(praia, {})
+        lat = coord.get("lat")
+        lon = coord.get("lon")
 
     score = calcular_score(onda, vento, status)
 
     dados_finais.append({
         "nome": praia,
+        "lat": lat,
+        "lon": lon,
         "onda": onda,
         "vento": vento,
         "balneabilidade": status,
-        "score": score,
-        "lat": lat,
-        "lon": lon
+        "data_coleta": bal_data.get("data_coleta"),
+        "observacoes": bal_data.get("observacoes"),
+        "score": score
     })
+
+dados_finais.sort(key=lambda x: x["score"], reverse=True)
 
 
 # -----------------------------------------
 # CALCULAR PRAIA RECOMENDADA
 # -----------------------------------------
 
-melhor_praia = max(dados_finais, key=lambda x: x["score"])
+if dados_finais:
+    melhor_praia = max(dados_finais, key=lambda x: x["score"])
+else:
+    melhor_praia = {"nome": None}
 
 
 # -----------------------------------------
@@ -145,6 +157,7 @@ melhor_praia = max(dados_finais, key=lambda x: x["score"])
 
 json_final = {
     "ultima_atualizacao": datetime.now().isoformat(),
+    "fonte_balneabilidade": fonte_balneabilidade,
     "praia_recomendada": melhor_praia["nome"],
     "praias": dados_finais
 }
@@ -155,8 +168,7 @@ json_final = {
 # -----------------------------------------
 
 with open("praias_rj.json", "w", encoding="utf-8") as f:
-
     json.dump(json_final, f, indent=2, ensure_ascii=False)
 
-print("JSON atualizado com sucesso!")
-print("Praia recomendada hoje:", melhor_praia["nome"])
+print("✅ JSON atualizado com sucesso!")
+print(f"🏖️  Praia recomendada hoje: {melhor_praia['nome']}")

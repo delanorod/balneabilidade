@@ -54,25 +54,25 @@ def main():
     resultado = []
 
     for praia in praias:
+        lat = praia["lat"]
+        lon = praia["lon"]
+
         if not praia["lat"] or not praia["lon"]:
             continue
 
-        dados = obter_dados_ondas(praia["lat"], praia["lon"])
+        dados = obter_dados_ondas(lat,lon)
 
         time.sleep(1)
 
-        score = calcular_score(dados["onda"], dados["vento"])
-
         resultado.append({
             "nome": praia["nome"],
-            "lat": praia["lat"],
-            "lon": praia["lon"],
-            "onda": dados["onda"],
-            "vento": dados["vento"],
+            "lat": lat,
+            "lon": lon,
+            "onda": dados.get["onda"],
+            "vento": dados.get["vento"],
             "score": score,
-            "balneabilidade": praia["status"],
-            "ultima_atualizacao": datetime.utcnow().isoformat()
         })
+    return resultado
 
     # salva no arquivo usado pelo app
     with open("praias_rj.json", "w", encoding="utf-8") as f:
