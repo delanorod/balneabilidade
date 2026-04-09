@@ -1,4 +1,16 @@
 # -*- coding: utf-8 -*-
+"""
+Gera praias_rj.json combinando:
+  - Ondas/vento : extrator_ondasZSul (CPTEC/INPE)
+  - Balneabilidade: praiascrapper2 (praialimpa.net)
+
+Estratégia de merge:
+  A fonte autoritativa de nomes e coordenadas é o extrator_ondasZSul
+  (lista PRAIAS). O scraper retorna nomes com variações (sufixos, postos),
+  então para cada praia do extrator buscamos a melhor correspondência
+  na balneabilidade usando correspondência por prefixo normalizado.
+"""
+
 import json
 import re
 from datetime import datetime
@@ -6,169 +18,210 @@ from datetime import datetime
 import extrator_ondasZSul
 from praiascrapper2 import scrape_balneabilidade
 
-# -----------------------------------------
-# NORMALIZAÇÃO DE NOMES
-# -----------------------------------------
 
+# ---------------------------------------------------------------------------
+# NORMALIZAÇÃO
+# ---------------------------------------------------------------------------
+
+def normalizar(texto: str) -> str:
+    """Remove sufixos entre parênteses, acentos e converte para minúsculas."""
+    texto = re.sub(r'\s*\(.*?\)', '', texto)   # remove (Posto 2), (RJ), etc.
+    texto = re.sub(r'\s*-\s*.*$',  '', texto)  # remove " - alguma coisa"
+    texto = texto.strip().lower()
+
+    # Tabela de acentos mais comuns
+    subs = str.maketrans(
+        "áàãâäéèêëíìîïóòõôöúùûüç",
+        "aaaaaaeeeeiiiiooooouuuuc"
+    )
+    return texto.translate(subs)
+
+
+# Apelidos: chave = nome normalizado que vem do scraper,
+#           valor = nome canônico que está no extrator
 APELIDOS = {
-    "recreio dos bandeirantes": "Recreio",
-    "barra": "Barra da Tijuca",
+    "recreio dos bandeirantes": "recreio",
+    "barra":                    "barra da tijuca",
+    "praia de ipanema":         "ipanema",
+    "praia de copacabana":      "copacabana",
+    "praia do leblon":          "leblon",
+    "praia da barra da tijuca": "barra da tijuca",
 }
 
-def normalizar_nome(nome):
-    # Remove sufixos entre parênteses: "Copacabana (Posto 2)" → "Copacabana"
-    nome = re.sub(r'\s*\(.*?\)', '', nome).strip()
-    return APELIDOS.get(nome.lower(), nome)
+def canonico(nome: str) -> str:
+    n = normalizar(nome)
+    return APELIDOS.get(n, n)
 
-COORDENADAS = {
-    "Copacabana": {"lat": -22.9711, "lon": -43.1822},
-    "Arpoador":   {"lat": -22.9870, "lon": -43.1910},
-    "Ipanema":    {"lat": -22.9836, "lon": -43.2045},
-    "Leblon":     {"lat": -22.9896, "lon": -43.2249},
-    "Barra da Tijuca": {"lat": -23.0016, "lon": -43.3659},
-    "Recreio":    {"lat": -23.0293, "lon": -43.4800},
-}
 
-# -----------------------------------------
-# CALCULAR SCORE DA PRAIA
-# -----------------------------------------
+# ---------------------------------------------------------------------------
+# SCORE
+# ---------------------------------------------------------------------------
 
-def calcular_score(onda, vento, bal):
+def calcular_score(onda, vento, agitacao, bal):
     score = 0
+
     if bal == "propria":
         score += 100
     elif bal == "impropria":
         score -= 100
+
     if onda is not None:
-        if onda < 0.5:    score += 40
-        elif onda < 1.0:  score += 30
-        elif onda < 1.5:  score += 10
-        else:             score -= 10
+        if onda < 0.5:   score += 40
+        elif onda < 1.0: score += 30
+        elif onda < 1.5: score += 10
+        else:            score -= 10
+
     if vento is not None:
-        if vento < 10:    score += 30
-        elif vento < 20:  score += 15
-        elif vento > 30:  score -= 20
+        if vento < 10:   score += 30
+        elif vento < 20: score += 15
+        elif vento > 30: score -= 20
+
+    # Penalidade extra por agitação forte
+    if agitacao == "Forte":
+        score -= 20
+    elif agitacao == "Moderado":
+        score -= 5
+
     return score
 
-# -----------------------------------------
-# COLETAR ONDAS
-# -----------------------------------------
 
-print("Coletando dados de ondas...")
+# ---------------------------------------------------------------------------
+# 1. COLETAR ONDAS
+# ---------------------------------------------------------------------------
+
+print("=" * 55)
+print("1. Coletando ondas (CPTEC/INPE)...")
+print("=" * 55)
+
 ondas_lista = extrator_ondasZSul.main()
 
 if not ondas_lista:
-    print("⚠️ Nenhum dado de ondas retornado")
+    print("⚠️  Nenhum dado de ondas retornado.")
     ondas_lista = []
 
-ondas_dict = {
-    o["nome"].strip().lower(): o
-    for o in ondas_lista
-}
-print(f"[DEBUG] ondas_dict tem {len(ondas_dict)} entradas")
-print(f"[DEBUG] Chaves de ondas_dict: {list(ondas_dict.keys())[:5]}")
+# Índice pelo nome canônico (já vem limpo do extrator)
+ondas_dict = { canonico(o["nome"]): o for o in ondas_lista }
 
-# -----------------------------------------
-# COLETAR BALNEABILIDADE
-# -----------------------------------------
+print(f"\n[MERGE] ondas_dict: {len(ondas_dict)} entradas")
+print(f"[MERGE] chaves: {list(ondas_dict.keys())}")
 
-print("\nColetando dados de balneabilidade...")
+
+# ---------------------------------------------------------------------------
+# 2. COLETAR BALNEABILIDADE
+# ---------------------------------------------------------------------------
+
+print("\n" + "=" * 55)
+print("2. Coletando balneabilidade (praialimpa.net)...")
+print("=" * 55)
+
 bal_lista = scrape_balneabilidade()
-fonte_balneabilidade = "praialimpa.net"
-print(f"✅ Balneabilidade coletada: {len(bal_lista)} praias")
-print(f"[DEBUG] Amostra bal_lista (3 primeiros): {bal_lista[:3]}")
+print(f"✅ {len(bal_lista)} registros coletados")
+print(f"[MERGE] Amostra: {bal_lista[:3]}")
 
-balneabilidade = {}
+# Índice pelo nome canônico
+bal_dict = {}
 for item in bal_lista:
-    nome_raw = item["praia"].strip()
-    nome_raw = nome_raw.split(" - ")[0]           # remove sufixo " - alguma coisa"
-    nome_norm = normalizar_nome(nome_raw)         # remove (Posto X), resolve apelidos
-    balneabilidade[nome_norm] = {
-        "status": item["status"],
-        "data_coleta": None,
-        "observacoes": f"Região: {item.get('regiao')}"
-    }
+    chave = canonico(item["praia"])
+    # Se a praia já existe e uma das entradas é imprópria, mantém imprópria
+    if chave in bal_dict:
+        if item["status"] == "impropria":
+            bal_dict[chave]["status"] = "impropria"
+    else:
+        bal_dict[chave] = {
+            "status":    item["status"],
+            "regiao":    item.get("regiao"),
+        }
 
-print(f"[DEBUG] balneabilidade tem {len(balneabilidade)} entradas após normalização")
-print(f"[DEBUG] Chaves de balneabilidade: {list(balneabilidade.keys())[:8]}")
+print(f"[MERGE] bal_dict: {len(bal_dict)} entradas após deduplicação")
+print(f"[MERGE] chaves: {list(bal_dict.keys())[:8]}")
 
-# -----------------------------------------
-# MONTAR LISTA FINAL
-# -----------------------------------------
+
+# ---------------------------------------------------------------------------
+# 3. MERGE: itera sobre as praias do extrator (fonte autoritativa)
+# ---------------------------------------------------------------------------
+
+print("\n" + "=" * 55)
+print("3. Realizando merge...")
+print("=" * 55)
 
 dados_finais = []
-matches = 0
-fallbacks = 0
-sem_coord = 0
 
-for praia, bal_data in balneabilidade.items():
-    status = (bal_data.get("status") or "").strip().lower()
+for onda_item in ondas_lista:
+    nome      = onda_item["nome"]          # nome canônico, ex: "Copacabana"
+    chave     = canonico(nome)
+    lat       = onda_item.get("lat")
+    lon       = onda_item.get("lon")
+    onda      = onda_item.get("onda")
+    vento     = onda_item.get("vento")
+    agitacao  = onda_item.get("agitacao")
+    direcao   = onda_item.get("direcao")
 
-    # BUG CORRIGIDO: normalizar_nome() agora é chamado aqui também
-    nome_normalizado = normalizar_nome(praia).strip().lower()
-    dados_onda = ondas_dict.get(nome_normalizado)
+    bal_data  = bal_dict.get(chave)
 
-    if dados_onda:
-        matches += 1
-        onda  = dados_onda.get("onda")
-        vento = dados_onda.get("vento")
-        lat   = dados_onda.get("lat")
-        lon   = dados_onda.get("lon")
-        print(f"[DEBUG] ✅ Match de ondas: '{praia}' → '{nome_normalizado}'")
+    if bal_data:
+        status = bal_data["status"]
+        regiao = bal_data["regiao"]
+        print(f"[MERGE] ✅ '{nome}' ({chave}) → bal={status} | "
+              f"onda={onda}m | vento={vento}km/h")
     else:
-        fallbacks += 1
-        onda  = None
-        vento = None
-        coord = COORDENADAS.get(praia, {})
-        lat   = coord.get("lat")
-        lon   = coord.get("lon")
-        if not lat:
-            sem_coord += 1
-            print(f"[DEBUG] ⚠️ Sem ondas e sem coord: '{praia}' (chave buscada: '{nome_normalizado}')")
+        status = None
+        regiao = None
+        print(f"[MERGE] ⚠️  '{nome}' ({chave}) → sem balneabilidade | "
+              f"onda={onda}m | vento={vento}km/h")
 
-    score = calcular_score(onda, vento, status)
+    score = calcular_score(onda, vento, agitacao, status)
 
     dados_finais.append({
-        "nome": praia,
-        "lat": lat,
-        "lon": lon,
-        "onda": onda,
-        "vento": vento,
+        "nome":           nome,
+        "lat":            lat,
+        "lon":            lon,
+        "onda":           onda,
+        "vento":          vento,
+        "agitacao":       agitacao,
+        "direcao":        direcao,
         "balneabilidade": status,
-        "data_coleta": bal_data.get("data_coleta"),
-        "observacoes": bal_data.get("observacoes"),
-        "score": score
+        "regiao":         regiao,
+        "score":          score,
     })
 
-print(f"\n[DEBUG] Resumo do merge:")
-print(f"         ✅ Com dados de ondas: {matches}")
-print(f"         🔁 Usou fallback de coord: {fallbacks - sem_coord}")
-print(f"         ❌ Sem coord alguma: {sem_coord}")
+# Praias da balneabilidade que não estão no extrator (sem ondas, mas têm coord?)
+nomes_extrator = { canonico(o["nome"]) for o in ondas_lista }
+extras = [k for k in bal_dict if k not in nomes_extrator]
+if extras:
+    print(f"\n[MERGE] ℹ️  {len(extras)} praias só na balneabilidade (sem ondas): {extras}")
+
+
+# ---------------------------------------------------------------------------
+# 4. ORDENAR E RECOMENDAR
+# ---------------------------------------------------------------------------
 
 dados_finais.sort(key=lambda x: x["score"], reverse=True)
 
-# -----------------------------------------
-# CALCULAR PRAIA RECOMENDADA
-# -----------------------------------------
+proprias = [p for p in dados_finais if p["balneabilidade"] == "propria"]
+melhor   = proprias[0] if proprias else (dados_finais[0] if dados_finais else {"nome": None})
 
-if dados_finais:
-    melhor_praia = max(dados_finais, key=lambda x: x["score"])
-else:
-    melhor_praia = {"nome": None}
+print(f"\n[MERGE] Resumo final:")
+print(f"         Total de praias : {len(dados_finais)}")
+print(f"         Com ondas       : {sum(1 for p in dados_finais if p['onda'] is not None)}")
+print(f"         Com bal.        : {sum(1 for p in dados_finais if p['balneabilidade'])}")
+print(f"         Próprias        : {sum(1 for p in dados_finais if p['balneabilidade'] == 'propria')}")
+print(f"         Impróprias      : {sum(1 for p in dados_finais if p['balneabilidade'] == 'impropria')}")
 
-# -----------------------------------------
-# GERAR E SALVAR JSON FINAL
-# -----------------------------------------
+
+# ---------------------------------------------------------------------------
+# 5. SALVAR JSON
+# ---------------------------------------------------------------------------
 
 json_final = {
-    "ultima_atualizacao": datetime.now().isoformat(),
-    "fonte_balneabilidade": fonte_balneabilidade,
-    "praia_recomendada": melhor_praia["nome"],
-    "praias": dados_finais
+    "ultima_atualizacao":   datetime.now().isoformat(),
+    "fonte_ondas":          "CPTEC/INPE",
+    "fonte_balneabilidade": "praialimpa.net",
+    "praia_recomendada":    melhor["nome"],
+    "praias":               dados_finais,
 }
 
 with open("praias_rj.json", "w", encoding="utf-8") as f:
     json.dump(json_final, f, indent=2, ensure_ascii=False)
 
 print("\n✅ JSON atualizado com sucesso!")
-print(f"🏖️  Praia recomendada hoje: {melhor_praia['nome']}")
+print(f"🏖️  Praia recomendada hoje: {melhor['nome']}")
