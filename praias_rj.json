@@ -1,6 +1,8 @@
 {
-  "ultima_atualizacao": "2026-04-09T13:57:55.085774",
-  "fonte": "CPTEC/INPE",
+  "ultima_atualizacao": "2026-04-09T11:15:25.216729",
+  "fonte_ondas": "CPTEC/INPE",
+  "fonte_balneabilidade": "praialimpa.net",
+  "praia_recomendada": "Copacabana",
   "praias": [
     {
       "nome": "Copacabana",
@@ -10,7 +12,9 @@
       "vento": 4.13,
       "agitacao": "Fraco",
       "direcao": "E",
-      "score": 10
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 140
     },
     {
       "nome": "Arpoador",
@@ -20,37 +24,9 @@
       "vento": 4.13,
       "agitacao": "Fraco",
       "direcao": "E",
-      "score": 10
-    },
-    {
-      "nome": "Ipanema",
-      "lat": -22.9836,
-      "lon": -43.2045,
-      "onda": 1.3,
-      "vento": 4.13,
-      "agitacao": "Fraco",
-      "direcao": "E",
-      "score": 10
-    },
-    {
-      "nome": "Leblon",
-      "lat": -22.9896,
-      "lon": -43.2249,
-      "onda": 1.3,
-      "vento": 4.13,
-      "agitacao": "Fraco",
-      "direcao": "E",
-      "score": 10
-    },
-    {
-      "nome": "Barra da Tijuca",
-      "lat": -23.0016,
-      "lon": -43.3659,
-      "onda": 1.3,
-      "vento": 4.13,
-      "agitacao": "Fraco",
-      "direcao": "E",
-      "score": 10
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 140
     },
     {
       "nome": "Recreio",
@@ -60,7 +36,9 @@
       "vento": 4.13,
       "agitacao": "Fraco",
       "direcao": "E",
-      "score": 10
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 140
     },
     {
       "nome": "Grumari",
@@ -70,7 +48,9 @@
       "vento": 4.13,
       "agitacao": "Fraco",
       "direcao": "E",
-      "score": 10
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 140
     },
     {
       "nome": "Prainha",
@@ -80,7 +60,9 @@
       "vento": 4.13,
       "agitacao": "Fraco",
       "direcao": "E",
-      "score": 10
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 140
     },
     {
       "nome": "Flamengo",
@@ -90,7 +72,45 @@
       "vento": 4.13,
       "agitacao": "Fraco",
       "direcao": "E",
-      "score": 10
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 140
+    },
+    {
+      "nome": "Ipanema",
+      "lat": -22.9836,
+      "lon": -43.2045,
+      "onda": 1.3,
+      "vento": 4.13,
+      "agitacao": "Fraco",
+      "direcao": "E",
+      "balneabilidade": "impropria",
+      "regiao": "Rio de Janeiro",
+      "score": -60
+    },
+    {
+      "nome": "Leblon",
+      "lat": -22.9896,
+      "lon": -43.2249,
+      "onda": 1.3,
+      "vento": 4.13,
+      "agitacao": "Fraco",
+      "direcao": "E",
+      "balneabilidade": "impropria",
+      "regiao": "Rio de Janeiro",
+      "score": -60
+    },
+    {
+      "nome": "Barra da Tijuca",
+      "lat": -23.0016,
+      "lon": -43.3659,
+      "onda": 1.3,
+      "vento": 4.13,
+      "agitacao": "Fraco",
+      "direcao": "E",
+      "balneabilidade": "impropria",
+      "regiao": "Rio de Janeiro",
+      "score": -60
     },
     {
       "nome": "Botafogo",
@@ -100,7 +120,9 @@
       "vento": 4.13,
       "agitacao": "Fraco",
       "direcao": "E",
-      "score": 10
+      "balneabilidade": "impropria",
+      "regiao": "Rio de Janeiro",
+      "score": -60
     }
   ]
 }

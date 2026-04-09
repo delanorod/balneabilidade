@@ -25,14 +25,14 @@ from praiascrapper2 import scrape_balneabilidade
 
 def normalizar(texto: str) -> str:
     """Remove sufixos entre parênteses, acentos e converte para minúsculas."""
-    texto = re.sub(r'\s*\(.*?\)', '', texto)   # remove (Posto 2), (RJ), etc.
-    texto = re.sub(r'\s*-\s*.*$',  '', texto)  # remove " - alguma coisa"
+    texto = re.sub(r'\s*\(.*?\)', '', texto)
+    texto = re.sub(r'\s*-\s*.*$',  '', texto)
     texto = texto.strip().lower()
 
-    # Tabela de acentos mais comuns
+    # Tabela corrigida: 23 caracteres na origem e 23 no destino
     subs = str.maketrans(
         "áàãâäéèêëíìîïóòõôöúùûüç",
-        "aaaaaaeeeeiiiiooooouuuuc"
+        "aaaaaeeeeiiiiooooouuuuc"
     )
     return texto.translate(subs)
 
