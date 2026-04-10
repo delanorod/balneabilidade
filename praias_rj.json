@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-04-10T15:44:13.886137",
+  "ultima_atualizacao": "2026-04-10T15:55:43.004613",
   "fonte_ondas": "CPTEC/INPE",
   "fonte_balneabilidade": "praialimpa.net",
   "praia_recomendada": "Vidigal",
@@ -9,228 +9,228 @@
       "lat": -22.9944,
       "lon": -43.2407,
       "onda": 2.82,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Sao Conrado",
       "lat": -23.0103,
       "lon": -43.2795,
       "onda": 2.78,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Recreio dos Bandeirantes",
       "lat": -23.0182,
       "lon": -43.4665,
       "onda": 2.54,
-      "vento": null,
+      "vento": 5.6,
       "agitacao": "Muito Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Prainha",
       "lat": -23.0369,
       "lon": -43.5163,
       "onda": 2.5,
-      "vento": null,
+      "vento": 5.6,
       "agitacao": "Muito Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Grumari",
       "lat": -23.0449,
       "lon": -43.5371,
       "onda": 2.5,
-      "vento": null,
+      "vento": 5.6,
       "agitacao": "Muito Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Icarai",
       "lat": -22.9027,
       "lon": -43.1123,
       "onda": 1.44,
-      "vento": null,
+      "vento": 5.5,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Niterói",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Camboinhas",
       "lat": -22.969,
       "lon": -43.0388,
       "onda": 2.88,
-      "vento": null,
+      "vento": 5.5,
       "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Niterói",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Itacoatiara",
       "lat": -22.9656,
       "lon": -43.0219,
       "onda": 2.88,
-      "vento": null,
+      "vento": 5.5,
       "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Niterói",
-      "score": 90
+      "score": 120
     },
     {
       "nome": "Leme",
       "lat": -22.9647,
       "lon": -43.1726,
       "onda": 2.3,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 70
+      "score": 100
     },
     {
       "nome": "Copacabana",
       "lat": -22.9711,
       "lon": -43.1823,
       "onda": 2.3,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 70
+      "score": 100
     },
     {
       "nome": "Flamengo",
       "lat": -22.9313,
       "lon": -43.1731,
       "onda": 2.3,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 70
+      "score": 100
     },
     {
       "nome": "Jurujuba",
       "lat": -22.9219,
       "lon": -43.0891,
       "onda": 2.3,
-      "vento": null,
+      "vento": 5.5,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Niterói",
-      "score": 70
+      "score": 100
     },
     {
       "nome": "Piratininga",
       "lat": -22.9604,
       "lon": -43.0541,
       "onda": 2.3,
-      "vento": null,
+      "vento": 5.5,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "propria",
       "regiao": "Niterói",
-      "score": 70
+      "score": 100
     },
     {
       "nome": "Macumba",
       "lat": -23.0228,
       "lon": -43.4908,
       "onda": 2.54,
-      "vento": null,
+      "vento": 5.6,
       "agitacao": "Muito Forte",
       "direcao": "S",
       "balneabilidade": null,
       "regiao": null,
-      "score": -10
+      "score": 20
     },
     {
       "nome": "Ipanema",
       "lat": -22.9838,
       "lon": -43.2046,
       "onda": 2.82,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -110
+      "score": -80
     },
     {
       "nome": "Leblon",
       "lat": -22.9867,
       "lon": -43.2234,
       "onda": 2.82,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -110
+      "score": -80
     },
     {
       "nome": "Barra da Tijuca",
       "lat": -23.0108,
       "lon": -43.3654,
       "onda": 2.66,
-      "vento": null,
+      "vento": 3.5,
       "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -110
+      "score": -80
     },
     {
       "nome": "Ramos",
       "lat": -22.8558,
       "lon": -43.2102,
       "onda": 1.44,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "impropria",
       "regiao": "Niterói",
-      "score": -110
+      "score": -80
     },
     {
       "nome": "Botafogo",
       "lat": -22.9519,
       "lon": -43.1823,
       "onda": 2.3,
-      "vento": null,
+      "vento": 4.0,
       "agitacao": "Forte",
       "direcao": "S",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -130
+      "score": -100
     }
   ]
 }
