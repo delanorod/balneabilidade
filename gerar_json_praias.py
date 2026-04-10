@@ -5,17 +5,18 @@ Gera praias_rj.json combinando:
   - Balneabilidade: praiascrapper2 (praialimpa.net)
 
 Estratégia de merge:
-  A fonte autoritativa de nomes e coordenadas é o extrator_ondasZSul
-  (lista PRAIAS). O scraper retorna nomes com variações (sufixos, postos),
-  então para cada praia do extrator buscamos a melhor correspondência
-  na balneabilidade usando correspondência por prefixo normalizado.
+  A fonte autoritativa de nomes e coordenadas é o extrator_ondasZSul.
+  O scraper retorna nomes com variações (sufixos, postos), então para cada
+  praia do extrator buscamos a melhor correspondência na balneabilidade
+  usando correspondência por prefixo normalizado.
 """
 
 import json
 import re
+import unicodedata  # ✅ FIX Bug 2: import que faltava
 from datetime import datetime
 
-import extrator_ondasZSul
+from extrator_ondasZSul import extrair_dados
 from praiascrapper2 import scrape_balneabilidade
 
 
@@ -23,18 +24,16 @@ from praiascrapper2 import scrape_balneabilidade
 # NORMALIZAÇÃO
 # ---------------------------------------------------------------------------
 
-def normalizar(texto: str) -> str:
-    """Remove sufixos entre parênteses, acentos e converte para minúsculas."""
-    texto = re.sub(r'\s*\(.*?\)', '', texto)
-    texto = re.sub(r'\s*-\s*.*$',  '', texto)
-    texto = texto.strip().lower()
+def normalizar_nome(nome: str) -> str:
+    nome = nome.lower().strip()
+    # Remove acentos
+    nome = unicodedata.normalize('NFKD', nome).encode('ASCII', 'ignore').decode('ASCII')
+    # Remove complementos tipo " - posto 6"
+    nome = nome.split(" - ")[0]
+    return nome
 
-    # Tabela corrigida: 23 caracteres na origem e 23 no destino
-    subs = str.maketrans(
-        "áàãâäéèêëíìîïóòõôöúùûüç",
-        "aaaaaeeeeiiiiooooouuuuc"
-    )
-    return texto.translate(subs)
+# ✅ FIX Bug 1: bloco solto que usava bal_lista e onda_item antes de existirem
+# foi removido daqui. A lógica equivalente já está no loop de merge (seção 3).
 
 
 # Apelidos: chave = nome normalizado que vem do scraper,
@@ -49,7 +48,7 @@ APELIDOS = {
 }
 
 def canonico(nome: str) -> str:
-    n = normalizar(nome)
+    n = normalizar_nome(nome)  # ✅ FIX Bug 3: era normalizar() (inexistente)
     return APELIDOS.get(n, n)
 
 
@@ -93,13 +92,12 @@ print("=" * 55)
 print("1. Coletando ondas (CPTEC/INPE)...")
 print("=" * 55)
 
-ondas_lista = extrator_ondasZSul.main()
+ondas_lista = extrair_dados()
 
 if not ondas_lista:
     print("⚠️  Nenhum dado de ondas retornado.")
     ondas_lista = []
 
-# Índice pelo nome canônico (já vem limpo do extrator)
 ondas_dict = { canonico(o["nome"]): o for o in ondas_lista }
 
 print(f"\n[MERGE] ondas_dict: {len(ondas_dict)} entradas")
@@ -118,18 +116,16 @@ bal_lista = scrape_balneabilidade()
 print(f"✅ {len(bal_lista)} registros coletados")
 print(f"[MERGE] Amostra: {bal_lista[:3]}")
 
-# Índice pelo nome canônico
 bal_dict = {}
 for item in bal_lista:
     chave = canonico(item["praia"])
-    # Se a praia já existe e uma das entradas é imprópria, mantém imprópria
     if chave in bal_dict:
         if item["status"] == "impropria":
             bal_dict[chave]["status"] = "impropria"
     else:
         bal_dict[chave] = {
-            "status":    item["status"],
-            "regiao":    item.get("regiao"),
+            "status": item["status"],
+            "regiao": item.get("regiao"),
         }
 
 print(f"[MERGE] bal_dict: {len(bal_dict)} entradas após deduplicação")
@@ -147,16 +143,16 @@ print("=" * 55)
 dados_finais = []
 
 for onda_item in ondas_lista:
-    nome      = onda_item["nome"]          # nome canônico, ex: "Copacabana"
-    chave     = canonico(nome)
-    lat       = onda_item.get("lat")
-    lon       = onda_item.get("lon")
-    onda      = onda_item.get("onda")
-    vento     = onda_item.get("vento")
-    agitacao  = onda_item.get("agitacao")
-    direcao   = onda_item.get("direcao")
+    nome     = onda_item["nome"]
+    chave    = canonico(nome)
+    lat      = onda_item.get("lat")
+    lon      = onda_item.get("lon")
+    onda     = onda_item.get("onda")
+    vento    = onda_item.get("vento")
+    agitacao = onda_item.get("agitacao")
+    direcao  = onda_item.get("direcao")
 
-    bal_data  = bal_dict.get(chave)
+    bal_data = bal_dict.get(chave)
 
     if bal_data:
         status = bal_data["status"]
@@ -184,7 +180,6 @@ for onda_item in ondas_lista:
         "score":          score,
     })
 
-# Praias da balneabilidade que não estão no extrator (sem ondas, mas têm coord?)
 nomes_extrator = { canonico(o["nome"]) for o in ondas_lista }
 extras = [k for k in bal_dict if k not in nomes_extrator]
 if extras:

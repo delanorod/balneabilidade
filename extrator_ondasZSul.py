@@ -1,246 +1,168 @@
-# -*- coding: utf-8 -*-
-"""
-Extrator de dados de ondas via API XML do CPTEC/INPE.
-
-Endpoints utilizados:
-  Busca de cidade : http://servicos.cptec.inpe.br/XML/listaCidades?city=<nome>
-  Ondas dia atual : http://servicos.cptec.inpe.br/XML/cidade/<id>/dia/0/ondas.xml
-  Ondas 6 dias    : http://servicos.cptec.inpe.br/XML/cidade/<id>/todos/tempos/ondas.xml
-
-O CPTEC trabalha com o município como granularidade mínima, não com praia.
-Por isso usamos um dicionário fixo que mapeia cada praia ao município CPTEC
-mais representativo, mais as coordenadas reais da praia para uso externo.
-"""
-
 import requests
-import xml.etree.ElementTree as ET
 import json
 import time
-from datetime import datetime
-
-BASE_URL = "http://servicos.cptec.inpe.br/XML"
-
-# ---------------------------------------------------------------------------
-# Mapeamento: praia → (município para busca no CPTEC, lat, lon)
-# Praias que pertencem ao mesmo município compartilham o mesmo ID CPTEC,
-# mas guardam coordenadas individuais para uso no app.
-# ---------------------------------------------------------------------------
-PRAIAS = [
-    {"nome": "Copacabana",      "cidade_cptec": "Rio de Janeiro", "lat": -22.9711, "lon": -43.1822},
-    {"nome": "Arpoador",        "cidade_cptec": "Rio de Janeiro", "lat": -22.9870, "lon": -43.1910},
-    {"nome": "Ipanema",         "cidade_cptec": "Rio de Janeiro", "lat": -22.9836, "lon": -43.2045},
-    {"nome": "Leblon",          "cidade_cptec": "Rio de Janeiro", "lat": -22.9896, "lon": -43.2249},
-    {"nome": "Barra da Tijuca", "cidade_cptec": "Rio de Janeiro", "lat": -23.0016, "lon": -43.3659},
-    {"nome": "Recreio",         "cidade_cptec": "Rio de Janeiro", "lat": -23.0293, "lon": -43.4800},
-    {"nome": "Grumari",         "cidade_cptec": "Rio de Janeiro", "lat": -23.0500, "lon": -43.5300},
-    {"nome": "Prainha",         "cidade_cptec": "Rio de Janeiro", "lat": -23.0444, "lon": -43.5136},
-    {"nome": "Flamengo",        "cidade_cptec": "Rio de Janeiro", "lat": -22.9300, "lon": -43.1750},
-    {"nome": "Botafogo",        "cidade_cptec": "Rio de Janeiro", "lat": -22.9500, "lon": -43.1800},
-    {"nome": "Itacoatiara",     "cidade_cptec": "Niterói",        "lat": -22.9667, "lon": -43.0333},
-    {"nome": "Camboinhas",      "cidade_cptec": "Niterói",        "lat": -22.9600, "lon": -43.0600},
-    {"nome": "Icaraí",          "cidade_cptec": "Niterói",        "lat": -22.9000, "lon": -43.1167},
-]
+from datetime import datetime, date
 
 
-# ---------------------------------------------------------------------------
-# Cache de IDs para não repetir buscas do mesmo município
-# ---------------------------------------------------------------------------
-_cache_ids: dict[str, str] = {}
+# =========================================
+# 🔧 FUNÇÕES AUXILIARES
+# =========================================
+
+def classificar_agitacao(altura_m: float) -> str:
+    """Converte altura de onda em classificação textual equivalente ao CPTEC."""
+    if altura_m < 0.5:
+        return "Fraco"
+    elif altura_m < 1.25:
+        return "Moderado"
+    elif altura_m < 2.5:
+        return "Forte"
+    else:
+        return "Muito Forte"
 
 
-def buscar_id_cidade(nome_cidade: str) -> str | None:
+def graus_para_direcao(graus: float) -> str:
+    """Converte graus em direção cardinal."""
+    dirs = ["N", "NE", "L", "SE", "S", "SO", "O", "NO"]
+    idx = round(graus / 45) % 8
+    return dirs[idx]
+
+
+# =========================================
+# 📥 LEITURA DO JSON
+# =========================================
+
+def carregar_praias_json():
+    with open("praias_rj.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data.get("praias", [])
+
+
+def montar_praias():
+    praias_json = carregar_praias_json()
+    praias = []
+    nomes = set()
+
+    for p in praias_json:
+        nome = p["nome"].strip()
+        if nome in nomes:
+            continue
+        nomes.add(nome)
+        praias.append({
+            "nome": nome,
+            "lat":  p.get("lat"),
+            "lon":  p.get("lon"),
+        })
+
+    return praias
+
+
+# =========================================
+# 🌊 OPEN-METEO MARINE API
+# =========================================
+
+def buscar_previsao_ondas_openmeteo(lat: float, lon: float) -> dict | None:
     """
-    Busca o ID numérico de uma cidade no CPTEC.
-    Retorna o ID como string ou None se não encontrar.
+    Consulta a Open-Meteo Marine API para as coordenadas dadas.
+    Retorna dados do dia de hoje: altura de onda, velocidade do vento e direção.
+
+    Documentação: https://open-meteo.com/en/docs/marine-weather-api
     """
-    if nome_cidade in _cache_ids:
-        print(f"[DEBUG]   (cache) '{nome_cidade}' → id={_cache_ids[nome_cidade]}")
-        return _cache_ids[nome_cidade]
-
-    url = f"{BASE_URL}/listaCidades"
-    params = {"city": nome_cidade}
-
-    print(f"[DEBUG] Buscando ID para '{nome_cidade}' em {url}")
-    try:
-        resp = requests.get(url, params=params, timeout=10)
-        print(f"[DEBUG]   status HTTP: {resp.status_code}")
-
-        root = ET.fromstring(resp.content)
-        cidades = root.findall("cidade")
-        print(f"[DEBUG]   cidades encontradas: {len(cidades)}")
-
-        for cidade in cidades:
-            nome_ret = (cidade.findtext("nome") or "").strip()
-            uf_ret   = (cidade.findtext("uf")   or "").strip()
-            id_ret   = (cidade.findtext("id")   or "").strip()
-            print(f"[DEBUG]     → '{nome_ret}' ({uf_ret}) id={id_ret}")
-
-            # Prioriza match exato + UF RJ ou ES (municípios litorâneos relevantes)
-            if nome_ret.lower() == nome_cidade.lower():
-                _cache_ids[nome_cidade] = id_ret
-                print(f"[DEBUG]   ✅ Match exato: id={id_ret}")
-                return id_ret
-
-        # Sem match exato: usa o primeiro resultado
-        if cidades:
-            id_ret = (cidades[0].findtext("id") or "").strip()
-            _cache_ids[nome_cidade] = id_ret
-            print(f"[DEBUG]   ⚠️ Sem match exato, usando primeiro: id={id_ret}")
-            return id_ret
-
-        print(f"[DEBUG]   ❌ Nenhuma cidade encontrada para '{nome_cidade}'")
-        return None
-
-    except Exception as e:
-        print(f"[DEBUG]   ❌ Erro ao buscar cidade '{nome_cidade}': {e}")
-        return None
-
-
-def buscar_ondas_cptec(cidade_id: str) -> dict:
-    """
-    Busca a previsão de ondas do dia atual para um ID de cidade no CPTEC.
-    Retorna um dict com onda (média manhã/tarde/noite), vento, agitacao e direcao.
-    """
-    url = f"{BASE_URL}/cidade/{cidade_id}/dia/0/ondas.xml"
-    print(f"[DEBUG]   Buscando ondas: {url}")
+    url = "https://marine-api.open-meteo.com/v1/marine"
+    params = {
+        "latitude":    lat,
+        "longitude":   lon,
+        "daily": [
+            "wave_height_max",
+            "wind_wave_direction_dominant",
+        ],
+        "hourly": [
+            "wind_speed_10m",   # vento em km/h (camada superficial)
+        ],
+        "wind_speed_unit": "kmh",
+        "timezone":    "America/Sao_Paulo",
+        "forecast_days": 1,
+    }
 
     try:
-        resp = requests.get(url, timeout=10)
-        print(f"[DEBUG]   status HTTP: {resp.status_code}")
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
+        data = response.json()
 
-        root = ET.fromstring(resp.content)
+        hoje = date.today().isoformat()
 
-        alturas = []
-        ventos  = []
-        agitacoes = []
-        direcoes  = []
+        # --- Onda máxima do dia ---
+        datas_daily = data["daily"]["time"]
+        idx_hoje = datas_daily.index(hoje) if hoje in datas_daily else 0
 
-        for periodo in ["manha", "tarde", "noite"]:
-            elem = root.find(periodo)
-            if elem is None:
-                continue
+        onda   = data["daily"]["wave_height_max"][idx_hoje]
+        dir_graus = data["daily"]["wind_wave_direction_dominant"][idx_hoje]
+        direcao = graus_para_direcao(dir_graus) if dir_graus is not None else None
 
-            altura   = elem.findtext("altura")
-            vento    = elem.findtext("vento")
-            agitacao = elem.findtext("agitacao")
-            direcao  = elem.findtext("direcao")
+        # --- Vento: média das horas do dia de hoje ---
+        ventos_hora = data["hourly"]["wind_speed_10m"]
+        # Open-Meteo retorna 24 valores por dia; fatia as 24 horas do dia pedido
+        inicio = idx_hoje * 24
+        ventos_hoje = [v for v in ventos_hora[inicio:inicio + 24] if v is not None]
+        vento = round(sum(ventos_hoje) / len(ventos_hoje), 1) if ventos_hoje else None
 
-            print(f"[DEBUG]     {periodo}: altura={altura}m | vento={vento}km/h "
-                  f"| agitacao={agitacao} | direcao={direcao}")
-
-            if altura:
-                try:
-                    alturas.append(float(altura))
-                except ValueError:
-                    pass
-            if vento:
-                try:
-                    ventos.append(float(vento))
-                except ValueError:
-                    pass
-            if agitacao:
-                agitacoes.append(agitacao)
-            if direcao:
-                direcoes.append(direcao)
-
-        onda_media  = round(sum(alturas) / len(alturas), 2) if alturas else None
-        vento_medio = round(sum(ventos)  / len(ventos),  2) if ventos  else None
-
-        # Agitação: se houver Forte no dia, reporta Forte; senão Moderado, senão Fraco
-        if "Forte" in agitacoes:
-            agitacao_final = "Forte"
-        elif "Moderado" in agitacoes:
-            agitacao_final = "Moderado"
-        elif agitacoes:
-            agitacao_final = agitacoes[0]
-        else:
-            agitacao_final = None
-
-        direcao_final = direcoes[1] if len(direcoes) > 1 else (direcoes[0] if direcoes else None)
-
-        print(f"[DEBUG]   ✅ Resumo: onda={onda_media}m | vento={vento_medio}km/h "
-              f"| agitacao={agitacao_final} | direcao={direcao_final}")
+        agitacao = classificar_agitacao(onda) if onda is not None else None
 
         return {
-            "onda":     onda_media,
-            "vento":    vento_medio,
-            "agitacao": agitacao_final,
-            "direcao":  direcao_final,
+            "data":     hoje,
+            "onda":     round(onda, 2) if onda is not None else None,
+            "vento":    vento,
+            "agitacao": agitacao,
+            "direcao":  direcao,
         }
 
     except Exception as e:
-        print(f"[DEBUG]   ❌ Erro ao buscar ondas (id={cidade_id}): {e}")
-        return {"onda": None, "vento": None, "agitacao": None, "direcao": None}
+        print(f"  ⚠️  Open-Meteo erro ({lat},{lon}): {e}")
+        return None
 
 
-def calcular_score(onda, vento):
-    score = 0
-    if onda is not None:
-        if 0.5 <= onda <= 1.5:
-            score += 5
-    if vento is not None:
-        if vento < 15:
-            score += 5
-    return score
+# =========================================
+# 🚀 FUNÇÃO PRINCIPAL
+# =========================================
 
+def extrair_dados():
+    praias = montar_praias()
+    resultados = []
 
-def main():
-    print(f"\n{'='*60}")
-    print(f"[DEBUG] Extrator CPTEC/INPE iniciado: {datetime.now().isoformat()}")
-    print(f"{'='*60}\n")
+    for praia in praias:
+        lat = praia.get("lat")
+        lon = praia.get("lon")
 
-    resultado = []
-
-    for praia in PRAIAS:
-        nome         = praia["nome"]
-        cidade_cptec = praia["cidade_cptec"]
-        lat          = praia["lat"]
-        lon          = praia["lon"]
-
-        print(f"\n[DEBUG] ── Praia: {nome} (via município '{cidade_cptec}')")
-
-        cidade_id = buscar_id_cidade(cidade_cptec)
-
-        if not cidade_id:
-            print(f"[DEBUG]   ⚠️ ID não encontrado, praia ignorada.")
+        if lat is None or lon is None:
+            print(f"  ⚠️  {praia['nome']}: sem coordenadas, pulando.")
             continue
 
-        dados = buscar_ondas_cptec(cidade_id)
+        print(f"  Coletando: {praia['nome']} ({lat}, {lon})")
+        previsao = buscar_previsao_ondas_openmeteo(lat, lon)
 
-        onda  = dados.get("onda")
-        vento = dados.get("vento")
-        score = calcular_score(onda, vento)
+        if not previsao:
+            continue
 
-        resultado.append({
-            "nome":     nome,
+        resultados.append({
+            "nome":     praia["nome"],
             "lat":      lat,
             "lon":      lon,
-            "onda":     onda,
-            "vento":    vento,
-            "agitacao": dados.get("agitacao"),
-            "direcao":  dados.get("direcao"),
-            "score":    score,
+            "onda":     previsao["onda"],
+            "vento":    previsao["vento"],
+            "agitacao": previsao["agitacao"],
+            "direcao":  previsao["direcao"],
+            "data":     previsao["data"],
         })
 
-        time.sleep(0.5)  # respeita o servidor do INPE
+        time.sleep(0.2)  # Open-Meteo é generosa, mas respeite o rate limit
 
-    print(f"\n{'='*60}")
-    print(f"[DEBUG] Coleta concluída: {len(resultado)} praias")
-    print(f"[DEBUG] Amostra (3 primeiras):")
-    for p in resultado[:3]:
-        print(f"         {p}")
-    print(f"{'='*60}\n")
+    return resultados
 
-    with open("praias_rj.json", "w", encoding="utf-8") as f:
-        json.dump({
-            "ultima_atualizacao": datetime.utcnow().isoformat(),
-            "fonte": "CPTEC/INPE",
-            "praias": resultado
-        }, f, ensure_ascii=False, indent=2)
 
-    print("[DEBUG] ✅ Arquivo praias_rj.json salvo.")
-    return resultado
-
+# =========================================
+# ▶️ EXECUÇÃO
+# =========================================
 
 if __name__ == "__main__":
-    main()
+    dados = extrair_dados()
+    print("\nRESULTADO:")
+    print(json.dumps(dados[:5], indent=2, ensure_ascii=False))
