@@ -44,6 +44,30 @@ def montar_praias():
 
 
 # =========================================
+# RETRY COM BACKOFF EXPONENCIAL
+# =========================================
+
+def get_com_retry(url: str, params: dict, timeout: int = 30, max_tentativas: int = 3) -> requests.Response:
+    """
+    Faz GET com retry e backoff exponencial.
+    Timeout aumentado para 30s (runners CI têm latência maior).
+    Esperas: 2s, 4s, 8s entre tentativas.
+    """
+    for tentativa in range(1, max_tentativas + 1):
+        try:
+            r = requests.get(url, params=params, timeout=timeout)
+            r.raise_for_status()
+            return r
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+            if tentativa == max_tentativas:
+                raise
+            espera = 2 ** tentativa  # 2s, 4s, 8s
+            print(f"    ↻ Tentativa {tentativa}/{max_tentativas} falhou ({e.__class__.__name__}), "
+                  f"aguardando {espera}s...")
+            time.sleep(espera)
+
+
+# =========================================
 # OPEN-METEO: ONDAS (Marine API)
 # =========================================
 
@@ -61,8 +85,7 @@ def buscar_ondas(lat: float, lon: float, hoje: str) -> dict:
         "timezone":      "America/Sao_Paulo",
         "forecast_days": 1,
     }
-    r = requests.get(url, params=params, timeout=10)
-    r.raise_for_status()
+    r = get_com_retry(url, params)
     data = r.json()
 
     datas = data["daily"]["time"]
@@ -94,8 +117,7 @@ def buscar_vento(lat: float, lon: float) -> float | None:
         "timezone":        "America/Sao_Paulo",
         "forecast_days":   1,
     }
-    r = requests.get(url, params=params, timeout=10)
-    r.raise_for_status()
+    r = get_com_retry(url, params)
     data = r.json()
 
     ventos = [v for v in data["hourly"]["wind_speed_10m"] if v is not None]
