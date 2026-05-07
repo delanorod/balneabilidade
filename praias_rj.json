@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-05-06T11:46:54.508763",
+  "ultima_atualizacao": "2026-05-07T11:43:48.938266",
   "fonte_ondas": "CPTEC/INPE",
   "fonte_balneabilidade": "praialimpa.net",
   "praia_recomendada": "Icarai",
@@ -8,10 +8,46 @@
       "nome": "Icarai",
       "lat": -22.9027,
       "lon": -43.1123,
-      "onda": 1.12,
-      "vento": 4.8,
+      "onda": 0.74,
+      "vento": 5.3,
       "agitacao": "Moderado",
       "direcao": "SE",
+      "balneabilidade": "propria",
+      "regiao": "Niterói",
+      "score": 155
+    },
+    {
+      "nome": "Leme",
+      "lat": -22.9647,
+      "lon": -43.1726,
+      "onda": 1.2,
+      "vento": 6.9,
+      "agitacao": "Moderado",
+      "direcao": "L",
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 135
+    },
+    {
+      "nome": "Copacabana",
+      "lat": -22.9711,
+      "lon": -43.1823,
+      "onda": 1.2,
+      "vento": 6.9,
+      "agitacao": "Moderado",
+      "direcao": "L",
+      "balneabilidade": "propria",
+      "regiao": "Rio de Janeiro",
+      "score": 135
+    },
+    {
+      "nome": "Jurujuba",
+      "lat": -22.9219,
+      "lon": -43.0891,
+      "onda": 1.2,
+      "vento": 5.3,
+      "agitacao": "Moderado",
+      "direcao": "L",
       "balneabilidade": "propria",
       "regiao": "Niterói",
       "score": 135
@@ -20,73 +56,37 @@
       "nome": "Ipanema",
       "lat": -22.9838,
       "lon": -43.2046,
-      "onda": 2.1,
-      "vento": 7.3,
+      "onda": 1.44,
+      "vento": 6.9,
       "agitacao": "Forte",
       "direcao": "L",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 100
+      "score": 120
     },
     {
       "nome": "Leblon",
       "lat": -22.9867,
       "lon": -43.2234,
-      "onda": 2.1,
-      "vento": 7.3,
+      "onda": 1.44,
+      "vento": 6.9,
       "agitacao": "Forte",
       "direcao": "L",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 100
-    },
-    {
-      "nome": "Leme",
-      "lat": -22.9647,
-      "lon": -43.1726,
-      "onda": 1.82,
-      "vento": 7.3,
-      "agitacao": "Forte",
-      "direcao": "L",
-      "balneabilidade": "propria",
-      "regiao": "Rio de Janeiro",
-      "score": 100
-    },
-    {
-      "nome": "Copacabana",
-      "lat": -22.9711,
-      "lon": -43.1823,
-      "onda": 1.82,
-      "vento": 7.3,
-      "agitacao": "Forte",
-      "direcao": "L",
-      "balneabilidade": "propria",
-      "regiao": "Rio de Janeiro",
-      "score": 100
-    },
-    {
-      "nome": "Jurujuba",
-      "lat": -22.9219,
-      "lon": -43.0891,
-      "onda": 1.82,
-      "vento": 4.8,
-      "agitacao": "Forte",
-      "direcao": "L",
-      "balneabilidade": "propria",
-      "regiao": "Niterói",
-      "score": 100
+      "score": 120
     },
     {
       "nome": "Barra da Tijuca",
       "lat": -23.0108,
       "lon": -43.3654,
-      "onda": 2.06,
-      "vento": 5.2,
+      "onda": 1.4,
+      "vento": 6.0,
       "agitacao": "Forte",
       "direcao": "L",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -100
+      "score": -80
     }
   ]
 }
