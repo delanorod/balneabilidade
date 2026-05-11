@@ -1,79 +1,67 @@
 {
-  "ultima_atualizacao": "2026-05-10T10:56:21.876418",
+  "ultima_atualizacao": "2026-05-11T12:37:44.318407",
   "fonte_ondas": "CPTEC/INPE",
   "fonte_balneabilidade": "praialimpa.net",
-  "praia_recomendada": "Icarai",
+  "praia_recomendada": "Jurujuba",
   "praias": [
-    {
-      "nome": "Icarai",
-      "lat": -22.9027,
-      "lon": -43.1123,
-      "onda": 1.12,
-      "vento": 11.9,
-      "agitacao": "Moderado",
-      "direcao": "SO",
-      "balneabilidade": "propria",
-      "regiao": "Niterói",
-      "score": 120
-    },
     {
       "nome": "Jurujuba",
       "lat": -22.9219,
       "lon": -43.0891,
-      "onda": 1.8,
-      "vento": 11.9,
-      "agitacao": "Forte",
+      "onda": 2.74,
+      "vento": 11.7,
+      "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Niterói",
-      "score": 85
+      "score": 105
     },
     {
       "nome": "Leme",
       "lat": -22.9647,
       "lon": -43.1726,
-      "onda": 1.8,
-      "vento": 14.8,
-      "agitacao": "Forte",
+      "onda": 2.74,
+      "vento": 15.1,
+      "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 85
+      "score": 105
     },
     {
       "nome": "Copacabana",
       "lat": -22.9711,
       "lon": -43.1823,
-      "onda": 1.8,
-      "vento": 14.8,
-      "agitacao": "Forte",
+      "onda": 2.74,
+      "vento": 15.1,
+      "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 85
+      "score": 105
     },
     {
       "nome": "Ipanema",
       "lat": -22.9838,
       "lon": -43.2046,
-      "onda": 2.22,
-      "vento": 14.8,
-      "agitacao": "Forte",
+      "onda": 3.32,
+      "vento": 15.1,
+      "agitacao": "Muito Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 85
+      "score": 105
     },
     {
-      "nome": "Leblon",
-      "lat": -22.9867,
-      "lon": -43.2234,
-      "onda": 2.22,
-      "vento": 14.8,
+      "nome": "Icarai",
+      "lat": -22.9027,
+      "lon": -43.1123,
+      "onda": 1.62,
+      "vento": 11.7,
       "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
-      "regiao": "Rio de Janeiro",
+      "regiao": "Niterói",
       "score": 85
     }
   ]
