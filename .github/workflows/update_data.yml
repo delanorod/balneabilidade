@@ -30,24 +30,22 @@ jobs:
         run: |
           python gerar_json_praias.py
 
-      # 🔥 Commit e push (VERSÃO BLINDADA)
+      # 🔥 Commit e push (sempre sobrescreve)
       - name: Commit e push seguro
         run: |
           git config --global user.name "bot-to-de-onda"
           git config --global user.email "bot@github.com"
 
-          # garante branch correta
-          git checkout main
-
-          # sincroniza com remoto (sem conflito)
+          # garante branch correta e sincroniza sem apagar arquivos gerados
           git fetch origin
-          git reset --hard origin/main
+          git checkout main
+          git merge origin/main --strategy-option=ours
 
           # adiciona arquivo atualizado
           git add praias_rj.json
 
-          # commit se houver mudança
-          git commit -m "Atualização automática das praias" || echo "Sem mudanças"
+          # commit sempre (mesmo sem diff de conteúdo)
+          git commit --allow-empty -m "Atualização automática das praias $(date '+%Y-%m-%d %H:%M')"
 
           # push final
           git push origin main
