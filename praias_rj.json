@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-05-18T13:39:09.684630",
+  "ultima_atualizacao": "2026-05-19T12:37:41.447964",
   "fonte_ondas": "CPTEC/INPE",
   "fonte_balneabilidade": "praialimpa.net",
   "praia_recomendada": "Recreio dos Bandeirantes",
@@ -8,85 +8,73 @@
       "nome": "Recreio dos Bandeirantes",
       "lat": -23.0182,
       "lon": -43.4665,
-      "onda": 1.18,
-      "vento": 6.2,
-      "agitacao": "Moderado",
+      "onda": 1.8,
+      "vento": 14.7,
+      "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 135
+      "score": 85
     },
     {
       "nome": "Leme",
       "lat": -22.9647,
       "lon": -43.1726,
-      "onda": 1.06,
-      "vento": 6.5,
-      "agitacao": "Moderado",
+      "onda": 1.6,
+      "vento": 11.2,
+      "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 135
+      "score": 85
     },
     {
       "nome": "Macumba",
       "lat": -23.0228,
       "lon": -43.4908,
-      "onda": 1.18,
-      "vento": 6.2,
-      "agitacao": "Moderado",
+      "onda": 1.8,
+      "vento": 14.7,
+      "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": null,
       "regiao": null,
-      "score": 35
+      "score": -15
     },
     {
       "nome": "Botafogo",
       "lat": -22.9519,
       "lon": -43.1823,
-      "onda": 1.06,
-      "vento": 6.5,
-      "agitacao": "Moderado",
+      "onda": 1.6,
+      "vento": 11.2,
+      "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -65
+      "score": -115
     },
     {
       "nome": "Vidigal",
       "lat": -22.9944,
       "lon": -43.2407,
-      "onda": 1.26,
-      "vento": 6.5,
+      "onda": 1.9,
+      "vento": 11.2,
       "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -80
-    },
-    {
-      "nome": "Ipanema",
-      "lat": -22.9838,
-      "lon": -43.2046,
-      "onda": 1.26,
-      "vento": 6.5,
-      "agitacao": "Forte",
-      "direcao": "SO",
-      "balneabilidade": "impropria",
-      "regiao": "Rio de Janeiro",
-      "score": -80
+      "score": -115
     },
     {
       "nome": "Leblon",
       "lat": -22.9867,
       "lon": -43.2234,
-      "onda": 1.26,
-      "vento": 6.5,
+      "onda": 1.9,
+      "vento": 11.2,
       "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -80
+      "score": -115
     }
   ]
 }
