@@ -1,65 +1,65 @@
 {
-  "ultima_atualizacao": "2026-05-26T19:10:31.440435",
+  "ultima_atualizacao": "2026-05-27T12:48:27.661813",
   "fonte_ondas": "CPTEC/INPE",
   "fonte_balneabilidade": "praialimpa.net",
-  "praia_recomendada": "Leme",
+  "praia_recomendada": "Sao Conrado",
   "praias": [
     {
-      "nome": "Leme",
-      "lat": -22.9647,
-      "lon": -43.1726,
-      "onda": 1.8,
-      "vento": 7.5,
+      "nome": "Sao Conrado",
+      "lat": -23.0103,
+      "lon": -43.2795,
+      "onda": 1.82,
+      "vento": 8.2,
       "agitacao": "Forte",
-      "direcao": "L",
+      "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
       "score": 100
     },
     {
-      "nome": "Sao Conrado",
-      "lat": -23.0103,
-      "lon": -43.2795,
-      "onda": 2.04,
-      "vento": 5.8,
+      "nome": "Leme",
+      "lat": -22.9647,
+      "lon": -43.1726,
+      "onda": 1.58,
+      "vento": 10.0,
       "agitacao": "Forte",
-      "direcao": "L",
+      "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 100
+      "score": 85
     },
     {
       "nome": "Recreio dos Bandeirantes",
       "lat": -23.0182,
       "lon": -43.4665,
-      "onda": 1.94,
-      "vento": 9.7,
+      "onda": 1.7,
+      "vento": 13.0,
       "agitacao": "Forte",
-      "direcao": "L",
+      "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 100
+      "score": 85
     },
     {
       "nome": "Macumba",
       "lat": -23.0228,
       "lon": -43.4908,
-      "onda": 1.94,
-      "vento": 9.7,
+      "onda": 1.7,
+      "vento": 13.0,
       "agitacao": "Forte",
-      "direcao": "L",
+      "direcao": "SO",
       "balneabilidade": null,
       "regiao": null,
-      "score": 0
+      "score": -15
     },
     {
       "nome": "Icarai",
       "lat": -22.9027,
       "lon": -43.1123,
-      "onda": 1.12,
-      "vento": 6.3,
+      "onda": 1.0,
+      "vento": 8.7,
       "agitacao": "Moderado",
-      "direcao": "SE",
+      "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Niterói",
       "score": -65
@@ -68,13 +68,13 @@
       "nome": "Botafogo",
       "lat": -22.9519,
       "lon": -43.1823,
-      "onda": 1.8,
-      "vento": 7.5,
+      "onda": 1.58,
+      "vento": 10.0,
       "agitacao": "Forte",
-      "direcao": "L",
+      "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Rio de Janeiro",
-      "score": -100
+      "score": -115
     }
   ]
 }
