@@ -79,7 +79,7 @@ class INEAScraper:
 
     PRAIALIMPA_URL       = "https://praialimpa.net/"
     INEA_BALNEABILIDADE_URL = "https://www.inea.rj.gov.br/ar-agua-e-solo/balneabilidade-das-praias/"
-    MAX_IDADE_DIAS       = 14   # praialimpa.net considerado "fresco" até 7 dias
+    MAX_IDADE_DIAS       = 21   # praialimpa.net considerado "fresco" até 7 dias
 
     # ── Cadastro de praias com coordenadas ─────────────────────────────
     PRAIAS = {
