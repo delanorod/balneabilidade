@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 """
 Gera praias_rj.json combinando:
-  - Ondas/vento : extrator_ondasZSul (CPTEC/INPE)
-  - Balneabilidade: praiascrapper2 (praialimpa.net)
+  - Ondas/vento     : extrator_ondasZSul (Open-Meteo)
+  - Balneabilidade  : inea_scraper2.INEAScraper
+                      (praialimpa.net → fallback PDF INEA)
 
 Estratégia de merge:
-  A fonte autoritativa de nomes e coordenadas é o extrator_ondasZSul.
-  O scraper retorna nomes com variações (sufixos, postos), então para cada
-  praia do extrator buscamos a melhor correspondência na balneabilidade
-  usando correspondência por prefixo normalizado.
+  A fonte autoritativa de nomes e coordenadas é o cadastro interno do
+  INEAScraper (INEAScraper.PRAIAS). Isso evita dependência circular com
+  o praias_rj.json ainda não gerado na primeira execução.
 """
 
 import json
-import re
-import unicodedata  # ✅ FIX Bug 2: import que faltava
+import unicodedata
 from datetime import datetime
 
 from extrator_ondasZSul import extrair_dados
-from praiascrapper2 import scrape_balneabilidade
+from inea_scraper2 import INEAScraper
 
 
 # ---------------------------------------------------------------------------
@@ -26,18 +25,11 @@ from praiascrapper2 import scrape_balneabilidade
 
 def normalizar_nome(nome: str) -> str:
     nome = nome.lower().strip()
-    # Remove acentos
     nome = unicodedata.normalize('NFKD', nome).encode('ASCII', 'ignore').decode('ASCII')
-    # Remove complementos tipo " - posto 6"
     nome = nome.split(" - ")[0]
     return nome
 
-# ✅ FIX Bug 1: bloco solto que usava bal_lista e onda_item antes de existirem
-# foi removido daqui. A lógica equivalente já está no loop de merge (seção 3).
 
-
-# Apelidos: chave = nome normalizado que vem do scraper,
-#           valor = nome canônico que está no extrator
 APELIDOS = {
     "recreio dos bandeirantes": "recreio",
     "barra":                    "barra da tijuca",
@@ -47,8 +39,9 @@ APELIDOS = {
     "praia da barra da tijuca": "barra da tijuca",
 }
 
+
 def canonico(nome: str) -> str:
-    n = normalizar_nome(nome)  # ✅ FIX Bug 3: era normalizar() (inexistente)
+    n = normalizar_nome(nome)
     return APELIDOS.get(n, n)
 
 
@@ -75,7 +68,6 @@ def calcular_score(onda, vento, agitacao, bal):
         elif vento < 20: score += 15
         elif vento > 30: score -= 20
 
-    # Penalidade extra por agitação forte
     if agitacao == "Forte":
         score -= 20
     elif agitacao == "Moderado":
@@ -85,55 +77,80 @@ def calcular_score(onda, vento, agitacao, bal):
 
 
 # ---------------------------------------------------------------------------
-# 1. COLETAR ONDAS
+# 0. MONTAR LISTA DE PRAIAS A PARTIR DO CADASTRO DO INEAScraper
+#    Isso resolve a dependência circular: o extrator_ondasZSul não precisa
+#    mais ler praias_rj.json para saber quais praias buscar.
 # ---------------------------------------------------------------------------
 
 print("=" * 55)
-print("1. Coletando ondas (CPTEC/INPE)...")
+print("0. Montando lista de praias do cadastro INEAScraper...")
 print("=" * 55)
 
-ondas_lista = extrair_dados()
+praias_cadastro = [
+    {
+        "nome": info["nome"],
+        "lat":  info["coordenadas"]["latitude"],
+        "lon":  info["coordenadas"]["longitude"],
+    }
+    for info in INEAScraper.PRAIAS.values()
+    if info.get("coordenadas")
+]
+
+print(f"   {len(praias_cadastro)} praias com coordenadas encontradas.")
+
+
+# ---------------------------------------------------------------------------
+# 1. COLETAR ONDAS  (passa a lista — sem ler praias_rj.json)
+# ---------------------------------------------------------------------------
+
+print("\n" + "=" * 55)
+print("1. Coletando ondas (Open-Meteo)...")
+print("=" * 55)
+
+ondas_lista = extrair_dados(praias=praias_cadastro)
 
 if not ondas_lista:
     print("⚠️  Nenhum dado de ondas retornado.")
-    ondas_lista = []
 
-ondas_dict = { canonico(o["nome"]): o for o in ondas_lista }
+ondas_dict = {canonico(o["nome"]): o for o in ondas_lista}
 
 print(f"\n[MERGE] ondas_dict: {len(ondas_dict)} entradas")
 print(f"[MERGE] chaves: {list(ondas_dict.keys())}")
 
 
 # ---------------------------------------------------------------------------
-# 2. COLETAR BALNEABILIDADE
+# 2. COLETAR BALNEABILIDADE  (INEAScraper — 2 camadas)
 # ---------------------------------------------------------------------------
 
 print("\n" + "=" * 55)
-print("2. Coletando balneabilidade (praialimpa.net)...")
+print("2. Coletando balneabilidade (INEAScraper v3.0)...")
 print("=" * 55)
 
-bal_lista = scrape_balneabilidade()
-print(f"✅ {len(bal_lista)} registros coletados")
-print(f"[MERGE] Amostra: {bal_lista[:3]}")
+try:
+    scraper = INEAScraper()
+    bal_objetos = scraper.scrape_balneabilidade()
+except RuntimeError as e:
+    print(f"❌ INEAScraper falhou: {e}")
+    bal_objetos = []
 
-bal_dict = {}
-for item in bal_lista:
-    chave = canonico(item["praia"])
+print(f"✅ {len(bal_objetos)} registros coletados")
+
+# bal_dict: canonico(nome) → BalneabilidadeData  (imprópria tem prioridade)
+bal_dict: dict = {}
+for obj in bal_objetos:
+    chave = canonico(obj.praia_nome)
     if chave in bal_dict:
-        if item["status"] == "impropria":
-            bal_dict[chave]["status"] = "impropria"
+        if obj.status == "impropria":
+            bal_dict[chave].status = "impropria"
     else:
-        bal_dict[chave] = {
-            "status": item["status"],
-            "regiao": item.get("regiao"),
-        }
+        bal_dict[chave] = obj
 
 print(f"[MERGE] bal_dict: {len(bal_dict)} entradas após deduplicação")
-print(f"[MERGE] chaves: {list(bal_dict.keys())[:8]}")
+print(f"[MERGE] amostra de chaves: {list(bal_dict.keys())[:8]}")
 
 
 # ---------------------------------------------------------------------------
-# 3. MERGE: itera sobre as praias do extrator (fonte autoritativa)
+# 3. MERGE — itera sobre o cadastro (fonte canônica de nomes/coords)
 # ---------------------------------------------------------------------------
 
 print("\n" + "=" * 55)
@@ -142,48 +159,77 @@ print("=" * 55)
 
 dados_finais = []
 
-for onda_item in ondas_lista:
-    nome     = onda_item["nome"]
-    chave    = canonico(nome)
-    lat      = onda_item.get("lat")
-    lon      = onda_item.get("lon")
-    onda     = onda_item.get("onda")
-    vento    = onda_item.get("vento")
-    agitacao = onda_item.get("agitacao")
-    direcao  = onda_item.get("direcao")
+for info_praia in praias_cadastro:
+    nome  = info_praia["nome"]
+    chave = canonico(nome)
+    lat   = info_praia["lat"]
+    lon   = info_praia["lon"]
 
-    bal_data = bal_dict.get(chave)
+    onda_item = ondas_dict.get(chave, {})
+    onda      = onda_item.get("onda")
+    vento     = onda_item.get("vento")
+    agitacao  = onda_item.get("agitacao")
+    direcao   = onda_item.get("direcao")
 
-    if bal_data:
-        status = bal_data["status"]
-        regiao = bal_data["regiao"]
+    bal_obj = bal_dict.get(chave)
+
+    if bal_obj:
+        status          = bal_obj.status
+        regiao          = bal_obj.regiao
+        municipio       = bal_obj.municipio
+        bairro          = bal_obj.bairro
+        coliformes      = bal_obj.coliformes_fecais
+        observacoes     = bal_obj.observacoes
+        data_coleta     = bal_obj.data_coleta
+        fonte_bal       = bal_obj.fonte
+        caracteristicas = bal_obj.caracteristicas
+        extensao_km     = bal_obj.extensao_km
         print(f"[MERGE] ✅ '{nome}' ({chave}) → bal={status} | "
-              f"onda={onda}m | vento={vento}km/h")
+              f"onda={onda}m | vento={vento}km/h | fonte={fonte_bal}")
     else:
-        status = None
-        regiao = None
+        # Dados do cadastro estático como fallback
+        cadastro_info   = INEAScraper.PRAIAS.get(chave, {})
+        status          = None
+        regiao          = cadastro_info.get("regiao")
+        municipio       = cadastro_info.get("municipio")
+        bairro          = cadastro_info.get("bairro", "")
+        coliformes      = None
+        observacoes     = None
+        data_coleta     = None
+        fonte_bal       = None
+        caracteristicas = cadastro_info.get("caracteristicas", [])
+        extensao_km     = cadastro_info.get("extensao_km")
         print(f"[MERGE] ⚠️  '{nome}' ({chave}) → sem balneabilidade | "
               f"onda={onda}m | vento={vento}km/h")
 
     score = calcular_score(onda, vento, agitacao, status)
 
     dados_finais.append({
-        "nome":           nome,
-        "lat":            lat,
-        "lon":            lon,
-        "onda":           onda,
-        "vento":          vento,
-        "agitacao":       agitacao,
-        "direcao":        direcao,
-        "balneabilidade": status,
-        "regiao":         regiao,
-        "score":          score,
+        "nome":             nome,
+        "lat":              lat,
+        "lon":              lon,
+        "onda":             onda,
+        "vento":            vento,
+        "agitacao":         agitacao,
+        "direcao":          direcao,
+        "balneabilidade":   status,
+        "regiao":           regiao,
+        "municipio":        municipio,
+        "bairro":           bairro,
+        "extensao_km":      extensao_km,
+        "caracteristicas":  caracteristicas,
+        "coliformes_fecais": coliformes,
+        "observacoes":      observacoes,
+        "data_coleta":      data_coleta,
+        "fonte_bal":        fonte_bal,
+        "score":            score,
     })
 
-nomes_extrator = { canonico(o["nome"]) for o in ondas_lista }
-extras = [k for k in bal_dict if k not in nomes_extrator]
+# Praias com balneabilidade mas fora do cadastro (regiões extras)
+nomes_cadastro = {canonico(p["nome"]) for p in praias_cadastro}
+extras = [k for k in bal_dict if k not in nomes_cadastro]
 if extras:
-    print(f"\n[MERGE] ℹ️  {len(extras)} praias só na balneabilidade (sem ondas): {extras}")
+    print(f"\n[MERGE] ℹ️  {len(extras)} praias só na balneabilidade (sem coords): {extras}")
 
 
 # ---------------------------------------------------------------------------
@@ -195,12 +241,15 @@ dados_finais.sort(key=lambda x: x["score"], reverse=True)
 proprias = [p for p in dados_finais if p["balneabilidade"] == "propria"]
 melhor   = proprias[0] if proprias else (dados_finais[0] if dados_finais else {"nome": None})
 
+fonte_usada = bal_objetos[0].fonte if bal_objetos else "n/a"
+
 print(f"\n[MERGE] Resumo final:")
-print(f"         Total de praias : {len(dados_finais)}")
-print(f"         Com ondas       : {sum(1 for p in dados_finais if p['onda'] is not None)}")
-print(f"         Com bal.        : {sum(1 for p in dados_finais if p['balneabilidade'])}")
-print(f"         Próprias        : {sum(1 for p in dados_finais if p['balneabilidade'] == 'propria')}")
-print(f"         Impróprias      : {sum(1 for p in dados_finais if p['balneabilidade'] == 'impropria')}")
+print(f"  Total de praias  : {len(dados_finais)}")
+print(f"  Com ondas        : {sum(1 for p in dados_finais if p['onda'] is not None)}")
+print(f"  Com bal.         : {sum(1 for p in dados_finais if p['balneabilidade'])}")
+print(f"  Próprias         : {sum(1 for p in dados_finais if p['balneabilidade'] == 'propria')}")
+print(f"  Impróprias       : {sum(1 for p in dados_finais if p['balneabilidade'] == 'impropria')}")
+print(f"  Fonte bal usada  : {fonte_usada}")
 
 
 # ---------------------------------------------------------------------------
@@ -209,8 +258,8 @@ print(f"         Impróprias      : {sum(1 for p in dados_finais if p['balneabil
 
 json_final = {
     "ultima_atualizacao":   datetime.now().isoformat(),
-    "fonte_ondas":          "CPTEC/INPE",
-    "fonte_balneabilidade": "praialimpa.net",
+    "fonte_ondas":          "Open-Meteo",
+    "fonte_balneabilidade": fonte_usada,
     "praia_recomendada":    melhor["nome"],
     "praias":               dados_finais,
 }

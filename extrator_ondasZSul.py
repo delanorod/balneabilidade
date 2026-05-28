@@ -9,7 +9,7 @@ from datetime import date
 # =========================================
 
 def classificar_agitacao(altura_m: float) -> str:
-    if altura_m < 0.5:   return "Fraco"
+    if altura_m < 0.5:    return "Fraco"
     elif altura_m < 1.25: return "Moderado"
     elif altura_m < 2.5:  return "Forte"
     else:                 return "Muito Forte"
@@ -21,19 +21,27 @@ def graus_para_direcao(graus: float) -> str:
 
 
 # =========================================
-# LEITURA DO JSON
+# LEITURA DO JSON  (usado apenas quando
+# extrator é executado de forma autônoma,
+# sem receber praias via parâmetro)
 # =========================================
 
-def carregar_praias_json():
-    with open("praias_rj.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data.get("praias", [])
+def carregar_praias_json(caminho: str = "praias_rj.json") -> list:
+    """Lê lista de praias do JSON gerado anteriormente."""
+    try:
+        with open(caminho, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("praias", [])
+    except FileNotFoundError:
+        print(f"  ⚠️  '{caminho}' não encontrado. "
+              "Passe a lista de praias diretamente via extrair_dados(praias=[...]).")
+        return []
 
 
-def montar_praias():
-    praias_json = carregar_praias_json()
-    praias = []
-    nomes = set()
+def _praias_do_json(caminho: str = "praias_rj.json") -> list[dict]:
+    """Monta lista [{nome, lat, lon}] a partir do JSON salvo."""
+    praias_json = carregar_praias_json(caminho)
+    praias, nomes = [], set()
     for p in praias_json:
         nome = p["nome"].strip()
         if nome in nomes:
@@ -47,12 +55,12 @@ def montar_praias():
 # RETRY COM BACKOFF EXPONENCIAL
 # =========================================
 
-def get_com_retry(url: str, params: dict, timeout: int = 30, max_tentativas: int = 3) -> requests.Response:
-    """
-    Faz GET com retry e backoff exponencial.
-    Timeout aumentado para 30s (runners CI têm latência maior).
-    Esperas: 2s, 4s, 8s entre tentativas.
-    """
+def get_com_retry(
+    url: str,
+    params: dict,
+    timeout: int = 30,
+    max_tentativas: int = 3,
+) -> requests.Response:
     for tentativa in range(1, max_tentativas + 1):
         try:
             r = requests.get(url, params=params, timeout=timeout)
@@ -61,9 +69,9 @@ def get_com_retry(url: str, params: dict, timeout: int = 30, max_tentativas: int
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
             if tentativa == max_tentativas:
                 raise
-            espera = 2 ** tentativa  # 2s, 4s, 8s
-            print(f"    ↻ Tentativa {tentativa}/{max_tentativas} falhou ({e.__class__.__name__}), "
-                  f"aguardando {espera}s...")
+            espera = 2 ** tentativa
+            print(f"    ↻ Tentativa {tentativa}/{max_tentativas} falhou "
+                  f"({e.__class__.__name__}), aguardando {espera}s...")
             time.sleep(espera)
 
 
@@ -72,11 +80,6 @@ def get_com_retry(url: str, params: dict, timeout: int = 30, max_tentativas: int
 # =========================================
 
 def buscar_ondas(lat: float, lon: float, hoje: str) -> dict:
-    """
-    Marine API - única fonte de wave_height e direção de ondas.
-    wind_speed_10m NÃO existe aqui; usar Weather API para vento.
-    https://open-meteo.com/en/docs/marine-weather-api
-    """
     url = "https://marine-api.open-meteo.com/v1/marine"
     params = {
         "latitude":      lat,
@@ -104,10 +107,6 @@ def buscar_ondas(lat: float, lon: float, hoje: str) -> dict:
 # =========================================
 
 def buscar_vento(lat: float, lon: float) -> float | None:
-    """
-    Weather Forecast API - wind_speed_10m só existe aqui, não na Marine API.
-    https://open-meteo.com/en/docs
-    """
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude":        lat,
@@ -150,26 +149,50 @@ def buscar_previsao_ondas_openmeteo(lat: float, lon: float) -> dict | None:
 # FUNÇÃO PRINCIPAL
 # =========================================
 
-def extrair_dados():
-    praias = montar_praias()
+def extrair_dados(praias: list[dict] | None = None) -> list[dict]:
+    """
+    Coleta ondas e vento para cada praia via Open-Meteo.
+
+    Parâmetros
+    ----------
+    praias : list[dict] | None
+        Lista de dicts com chaves 'nome', 'lat', 'lon'.
+        Se None, tenta ler do praias_rj.json (modo autônomo).
+        Quando chamado por gerar_json_praias.py, passe a lista
+        montada a partir do INEAScraper.PRAIAS para evitar
+        dependência circular com o JSON ainda não gerado.
+
+    Retorna
+    -------
+    list[dict]  — cada item: {nome, lat, lon, onda, vento,
+                               agitacao, direcao, data}
+    """
+    if praias is None:
+        praias = _praias_do_json()
+
+    if not praias:
+        print("  ⚠️  Lista de praias vazia. Nenhum dado coletado.")
+        return []
+
     resultados = []
 
     for praia in praias:
-        lat = praia.get("lat")
-        lon = praia.get("lon")
+        nome = praia.get("nome", "?")
+        lat  = praia.get("lat")
+        lon  = praia.get("lon")
 
         if lat is None or lon is None:
-            print(f"  ⚠️  {praia['nome']}: sem coordenadas, pulando.")
+            print(f"  ⚠️  {nome}: sem coordenadas, pulando.")
             continue
 
-        print(f"  Coletando: {praia['nome']} ({lat}, {lon})")
+        print(f"  Coletando: {nome} ({lat}, {lon})")
         previsao = buscar_previsao_ondas_openmeteo(lat, lon)
 
         if not previsao:
             continue
 
         resultados.append({
-            "nome":     praia["nome"],
+            "nome":     nome,
             "lat":      lat,
             "lon":      lon,
             "onda":     previsao["onda"],
@@ -185,10 +208,10 @@ def extrair_dados():
 
 
 # =========================================
-# EXECUCAO
+# EXECUÇÃO AUTÔNOMA
 # =========================================
 
 if __name__ == "__main__":
-    dados = extrair_dados()
+    dados = extrair_dados()   # lê praias_rj.json quando rodado sozinho
     print("\nRESULTADO:")
     print(json.dumps(dados[:5], indent=2, ensure_ascii=False))

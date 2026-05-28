@@ -212,83 +212,146 @@ class INEAScraper:
         Faz scraping do praialimpa.net.
         Retorna (lista_de_dados, data_de_atualizacao).
         Em caso de falha retorna ([], None).
+
+        Estratégia de parse: varredura linear de NavigableString.
+        O praialimpa.net usa textos soltos (não dentro de <p>) para os
+        status "Própria" / "Imprópria" / "n/a", então find_next_sibling('p')
+        não funciona — os nós de status não são elementos, são texto puro.
+        A varredura linear respeita a ordem do documento e detecta:
+          <h1>  → município/região atual
+          texto solto == status → armazena e espera próximo texto = praia
+          texto solto == "Atualizado em DD/MM/AAAA" → captura data
+          próximo texto após status → nome da praia (+ trecho opcional)
         """
         resp = self._get(self.PRAIALIMPA_URL)
         if not resp:
             return [], None
 
         soup = BeautifulSoup(resp.content, 'html.parser')
-        resultados: List[BalneabilidadeData] = []
-        data_atualizacao: Optional[date] = None
 
-        # A página lista município como <h1>, depois pares de <p> status + nome
-        # Detectamos a data via texto "Atualizado em DD/MM/AAAA"
+        # Remove ruído: scripts, estilos, nav, footer
+        for tag in soup(['script', 'style', 'noscript', 'nav', 'footer', 'head']):
+            tag.decompose()
+
         texto_completo = soup.get_text(separator='\n')
         data_atualizacao = self._extrair_data_mais_recente(texto_completo)
+        data_str = (data_atualizacao.strftime('%Y-%m-%d')
+                    if data_atualizacao else datetime.now().strftime('%Y-%m-%d'))
 
-        # Itera por município (seções <h1> + blocos)
-        # Estrutura real: cada praia aparece como dois <p> consecutivos:
-        #   <p class="proprio|improprio">Própria / Imprópria</p>
-        #   <p><strong>Nome da Praia</strong> Trecho...</p>
-        # Vamos extrair diretamente por texto de cada elemento
+        # Textos de status reconhecidos (lowercase → valor interno)
+        STATUS_TOKENS = {
+            'própria':   'propria',
+            'imprópria': 'impropria',
+            'n/a':       'indisponivel',
+        }
 
-        municipio_atual = "Rio de Janeiro"
-        for elem in soup.find_all(['h1', 'p']):
-            tag = elem.name
-            texto = elem.get_text(strip=True)
+        # Textos de interface a ignorar
+        IGNORAR = {
+            'cidade ou praia', 'praialimpa.net',
+            'fonte', 'observação', 'praias limpas do rio de janeiro',
+        }
 
-            if tag == 'h1' and texto and texto not in ('PraiaLimpa.net',):
-                municipio_atual = texto
+        resultados: List[BalneabilidadeData] = []
+        municipio_atual = 'Rio de Janeiro'
+        status_pendente: Optional[str] = None   # status aguardando nome da praia
+        nome_pendente:   Optional[str] = None   # nome aguardando trecho (opcional)
+
+        for node in soup.find_all(string=True):
+            t = ' '.join(node.split())          # normaliza espaços
+            if not t:
                 continue
 
-            # Detecta bloco de praia: começa com "Própria" ou "Imprópria"
-            if texto in ('Própria', 'Imprópria', 'n/a'):
-                status_texto = texto
-                # Próximo <p> é o nome + trecho
-                proximo = elem.find_next_sibling('p')
-                if not proximo:
-                    continue
-                texto_prox = proximo.get_text(separator=' ', strip=True)
+            # ── Região / município via <h1> ───────────────────────────────
+            if node.parent and node.parent.name == 'h1':
+                if t and t not in ('PraiaLimpa.net',):
+                    municipio_atual = t
+                status_pendente = None
+                nome_pendente   = None
+                continue
 
-                # Nome é o conteúdo do <strong>
-                strong = proximo.find('strong')
-                if strong:
-                    nome_praia = strong.get_text(strip=True)
-                    trecho = texto_prox.replace(nome_praia, '').strip()
-                else:
-                    nome_praia = texto_prox
-                    trecho = ''
+            # ── Data de atualização ───────────────────────────────────────
+            if t.lower().startswith('atualizado em'):
+                continue
 
-                if not nome_praia:
-                    continue
+            # ── Ignora lixo de interface ──────────────────────────────────
+            if t.lower() in IGNORAR:
+                continue
 
-                status = self._determinar_status(status_texto)
-                praia_id, praia_info = self._identificar_praia(nome_praia)
+            # ── Detecta status ────────────────────────────────────────────
+            if t.lower() in STATUS_TOKENS:
+                # Fecha praia pendente sem trecho
+                if nome_pendente:
+                    self._registrar_praia(
+                        nome_pendente, '', status_pendente,
+                        municipio_atual, data_str, resultados,
+                    )
+                    nome_pendente = None
 
-                data_str = data_atualizacao.strftime('%Y-%m-%d') if data_atualizacao else datetime.now().strftime('%Y-%m-%d')
+                status_pendente = STATUS_TOKENS[t.lower()]
+                continue
 
-                resultado = BalneabilidadeData(
-                    praia_id=praia_id or self._slugify(nome_praia),
-                    praia_nome=nome_praia,
-                    status=status,
-                    coliformes_fecais=None,
-                    data_coleta=data_str,
-                    municipio=municipio_atual,
-                    regiao=praia_info['regiao'] if praia_info else self._inferir_regiao(municipio_atual),
-                    coordenadas=praia_info.get('coordenadas') if praia_info else None,
-                    bairro=praia_info.get('bairro', '') if praia_info else '',
-                    extensao_km=praia_info.get('extensao_km') if praia_info else None,
-                    caracteristicas=praia_info.get('caracteristicas', []) if praia_info else [],
-                    fonte="praialimpa.net",
-                    observacoes=trecho if trecho else None,
-                    url_inea=self.PRAIALIMPA_URL,
+            # ── Captura nome da praia ─────────────────────────────────────
+            if status_pendente and nome_pendente is None:
+                nome_pendente = t
+                continue
+
+            # ── Captura trecho / localização (texto logo após o nome) ─────
+            if nome_pendente:
+                self._registrar_praia(
+                    nome_pendente, t, status_pendente,
+                    municipio_atual, data_str, resultados,
                 )
-                resultados.append(resultado)
+                nome_pendente   = None
+                status_pendente = None
+                continue
 
-        # Remove duplicatas (mesma praia, múltiplos pontos) — mantém o mais recente
+        # Fecha última praia pendente (HTML pode terminar sem trecho)
+        if nome_pendente:
+            self._registrar_praia(
+                nome_pendente, '', status_pendente,
+                municipio_atual, data_str, resultados,
+            )
+
+        logger.info(f"praialimpa.net: {len(resultados)} entradas antes de consolidar")
+
         resultados = self._consolidar_por_praia(resultados)
 
+        logger.info(f"praialimpa.net: {len(resultados)} praias após consolidação")
+
         return resultados, data_atualizacao
+
+    def _registrar_praia(
+        self,
+        nome: str,
+        trecho: str,
+        status_token: Optional[str],
+        municipio: str,
+        data_str: str,
+        resultados: List,
+    ) -> None:
+        """Monta BalneabilidadeData e adiciona à lista de resultados."""
+        if not nome or not status_token:
+            return
+
+        praia_id, praia_info = self._identificar_praia(nome)
+
+        resultados.append(BalneabilidadeData(
+            praia_id=praia_id or self._slugify(nome),
+            praia_nome=nome,
+            status=status_token,
+            coliformes_fecais=None,
+            data_coleta=data_str,
+            municipio=municipio,
+            regiao=(praia_info['regiao'] if praia_info
+                    else self._inferir_regiao(municipio)),
+            coordenadas=(praia_info.get('coordenadas') if praia_info else None),
+            bairro=(praia_info.get('bairro', '') if praia_info else ''),
+            extensao_km=(praia_info.get('extensao_km') if praia_info else None),
+            caracteristicas=(praia_info.get('caracteristicas', []) if praia_info else []),
+            fonte='praialimpa.net',
+            observacoes=trecho if trecho else None,
+            url_inea=self.PRAIALIMPA_URL,
+        ))
 
     def _extrair_data_mais_recente(self, texto: str) -> Optional[date]:
         """Extrai a data mais recente do padrão 'Atualizado em DD/MM/AAAA'."""
