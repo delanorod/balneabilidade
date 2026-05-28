@@ -23,7 +23,7 @@ jobs:
       # 🔹 Instala dependências
       - name: Instalar dependências
         run: |
-          pip install requests beautifulsoup4 pandas lxml
+          pip install requests beautifulsoup4 pandas lxml pdfplumber
 
       # 🔹 Executa seu script
       - name: Executar script
