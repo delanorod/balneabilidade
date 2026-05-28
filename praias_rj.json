@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-05-27T12:48:27.661813",
+  "ultima_atualizacao": "2026-05-28T13:22:10.765388",
   "fonte_ondas": "CPTEC/INPE",
   "fonte_balneabilidade": "praialimpa.net",
   "praia_recomendada": "Sao Conrado",
@@ -8,20 +8,20 @@
       "nome": "Sao Conrado",
       "lat": -23.0103,
       "lon": -43.2795,
-      "onda": 1.82,
-      "vento": 8.2,
+      "onda": 2.12,
+      "vento": 12.3,
       "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
       "regiao": "Rio de Janeiro",
-      "score": 100
+      "score": 85
     },
     {
       "nome": "Leme",
       "lat": -22.9647,
       "lon": -43.1726,
-      "onda": 1.58,
-      "vento": 10.0,
+      "onda": 1.76,
+      "vento": 15.3,
       "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
@@ -32,8 +32,8 @@
       "nome": "Recreio dos Bandeirantes",
       "lat": -23.0182,
       "lon": -43.4665,
-      "onda": 1.7,
-      "vento": 13.0,
+      "onda": 2.04,
+      "vento": 16.8,
       "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": "propria",
@@ -44,8 +44,8 @@
       "nome": "Macumba",
       "lat": -23.0228,
       "lon": -43.4908,
-      "onda": 1.7,
-      "vento": 13.0,
+      "onda": 2.04,
+      "vento": 16.8,
       "agitacao": "Forte",
       "direcao": "SO",
       "balneabilidade": null,
@@ -56,25 +56,13 @@
       "nome": "Icarai",
       "lat": -22.9027,
       "lon": -43.1123,
-      "onda": 1.0,
-      "vento": 8.7,
+      "onda": 1.12,
+      "vento": 11.7,
       "agitacao": "Moderado",
       "direcao": "SO",
       "balneabilidade": "impropria",
       "regiao": "Niterói",
-      "score": -65
-    },
-    {
-      "nome": "Botafogo",
-      "lat": -22.9519,
-      "lon": -43.1823,
-      "onda": 1.58,
-      "vento": 10.0,
-      "agitacao": "Forte",
-      "direcao": "SO",
-      "balneabilidade": "impropria",
-      "regiao": "Rio de Janeiro",
-      "score": -115
+      "score": -80
     }
   ]
 }
