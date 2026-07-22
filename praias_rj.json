@@ -1,5 +1,5 @@
 {
-  "ultima_atualizacao": "2026-07-22T10:32:40.751927",
+  "ultima_atualizacao": "2026-07-22T11:55:36.917599",
   "fonte_ondas": "Open-Meteo",
   "fonte_balneabilidade": "praialimpa.net",
   "praia_recomendada": "Gragoatá",
@@ -211,6 +211,29 @@
       "score": 140
     },
     {
+      "nome": "Joatinga",
+      "lat": -23.0102,
+      "lon": -43.2879,
+      "onda": 1.1,
+      "vento": 6.6,
+      "agitacao": "Moderado",
+      "direcao": "L",
+      "balneabilidade": "propria",
+      "regiao": "Zona Sul",
+      "municipio": "Rio de Janeiro",
+      "bairro": "Joá",
+      "extensao_km": 0.5,
+      "caracteristicas": [
+        "secreta",
+        "bela"
+      ],
+      "coliformes_fecais": null,
+      "observacoes": "Centro da praia",
+      "data_coleta": "2026-07-16",
+      "fonte_bal": "praialimpa.net",
+      "score": 135
+    },
+    {
       "nome": "Pepino",
       "lat": -23.007,
       "lon": -43.282,
@@ -302,36 +325,13 @@
       "score": 120
     },
     {
-      "nome": "Joatinga",
-      "lat": -23.0102,
-      "lon": -43.2879,
+      "nome": "Macumba",
+      "lat": -23.031,
+      "lon": -43.4921,
       "onda": null,
       "vento": null,
       "agitacao": null,
       "direcao": null,
-      "balneabilidade": "propria",
-      "regiao": "Zona Sul",
-      "municipio": "Rio de Janeiro",
-      "bairro": "Joá",
-      "extensao_km": 0.5,
-      "caracteristicas": [
-        "secreta",
-        "bela"
-      ],
-      "coliformes_fecais": null,
-      "observacoes": "Centro da praia",
-      "data_coleta": "2026-07-16",
-      "fonte_bal": "praialimpa.net",
-      "score": 100
-    },
-    {
-      "nome": "Macumba",
-      "lat": -23.031,
-      "lon": -43.4921,
-      "onda": 1.02,
-      "vento": 14.6,
-      "agitacao": "Moderado",
-      "direcao": "N",
       "balneabilidade": null,
       "regiao": "Zona Oeste",
       "municipio": "Rio de Janeiro",
@@ -345,7 +345,7 @@
       "observacoes": null,
       "data_coleta": null,
       "fonte_bal": null,
-      "score": 20
+      "score": 0
     },
     {
       "nome": "Icaraí",
@@ -394,6 +394,28 @@
       "score": -30
     },
     {
+      "nome": "São Francisco",
+      "lat": -22.915,
+      "lon": -43.118,
+      "onda": 0.46,
+      "vento": 6.3,
+      "agitacao": "Fraco",
+      "direcao": "NE",
+      "balneabilidade": "impropria",
+      "regiao": "Niterói",
+      "municipio": "Niterói",
+      "bairro": "São Francisco",
+      "extensao_km": 0.5,
+      "caracteristicas": [
+        "baía"
+      ],
+      "coliformes_fecais": null,
+      "observacoes": "Trechos impróprios: Em frente à Avenida Quintino Bocaiúva n° 233; Em frente à Igreja São Francisco",
+      "data_coleta": "2026-07-16",
+      "fonte_bal": "praialimpa.net",
+      "score": -30
+    },
+    {
       "nome": "Copacabana",
       "lat": -22.9711,
       "lon": -43.1823,
@@ -435,29 +457,6 @@
       ],
       "coliformes_fecais": null,
       "observacoes": "Trechos impróprios: Em frente à Rua Corrêa Dutra",
-      "data_coleta": "2026-07-16",
-      "fonte_bal": "praialimpa.net",
-      "score": -45
-    },
-    {
-      "nome": "Botafogo",
-      "lat": -22.9519,
-      "lon": -43.182,
-      "onda": 0.94,
-      "vento": 8.6,
-      "agitacao": "Moderado",
-      "direcao": "NE",
-      "balneabilidade": "impropria",
-      "regiao": "Zona Sul",
-      "municipio": "Rio de Janeiro",
-      "bairro": "Botafogo",
-      "extensao_km": 0.9,
-      "caracteristicas": [
-        "baía",
-        "histórica"
-      ],
-      "coliformes_fecais": null,
-      "observacoes": "Trechos impróprios: Em frente à comporta de Botafogo",
       "data_coleta": "2026-07-16",
       "fonte_bal": "praialimpa.net",
       "score": -45
@@ -601,29 +600,6 @@
       "score": -65
     },
     {
-      "nome": "Vidigal",
-      "lat": -22.9932,
-      "lon": -43.2349,
-      "onda": 1.16,
-      "vento": 8.6,
-      "agitacao": "Moderado",
-      "direcao": "L",
-      "balneabilidade": "impropria",
-      "regiao": "Zona Sul",
-      "municipio": "Rio de Janeiro",
-      "bairro": "Vidigal",
-      "extensao_km": 0.4,
-      "caracteristicas": [
-        "pequena",
-        "pitoresca"
-      ],
-      "coliformes_fecais": null,
-      "observacoes": "Centro da praia",
-      "data_coleta": "2026-07-16",
-      "fonte_bal": "praialimpa.net",
-      "score": -65
-    },
-    {
       "nome": "São Conrado",
       "lat": -23.0038,
       "lon": -43.2753,
@@ -673,10 +649,10 @@
       "nome": "Barra da Tijuca",
       "lat": -23.0048,
       "lon": -43.3658,
-      "onda": null,
-      "vento": null,
-      "agitacao": null,
-      "direcao": null,
+      "onda": 1.04,
+      "vento": 6.6,
+      "agitacao": "Moderado",
+      "direcao": "L",
       "balneabilidade": "impropria",
       "regiao": "Zona Oeste",
       "municipio": "Rio de Janeiro",
@@ -688,6 +664,52 @@
       ],
       "coliformes_fecais": null,
       "observacoes": "Trechos impróprios: Em frente ao 2º GMAR (Bombeiros); Quebra-Mar - Em frente à Rua Sargento João de Faria",
+      "data_coleta": "2026-07-16",
+      "fonte_bal": "praialimpa.net",
+      "score": -65
+    },
+    {
+      "nome": "Vidigal",
+      "lat": -22.9932,
+      "lon": -43.2349,
+      "onda": null,
+      "vento": null,
+      "agitacao": null,
+      "direcao": null,
+      "balneabilidade": "impropria",
+      "regiao": "Zona Sul",
+      "municipio": "Rio de Janeiro",
+      "bairro": "Vidigal",
+      "extensao_km": 0.4,
+      "caracteristicas": [
+        "pequena",
+        "pitoresca"
+      ],
+      "coliformes_fecais": null,
+      "observacoes": "Centro da praia",
+      "data_coleta": "2026-07-16",
+      "fonte_bal": "praialimpa.net",
+      "score": -100
+    },
+    {
+      "nome": "Botafogo",
+      "lat": -22.9519,
+      "lon": -43.182,
+      "onda": null,
+      "vento": null,
+      "agitacao": null,
+      "direcao": null,
+      "balneabilidade": "impropria",
+      "regiao": "Zona Sul",
+      "municipio": "Rio de Janeiro",
+      "bairro": "Botafogo",
+      "extensao_km": 0.9,
+      "caracteristicas": [
+        "baía",
+        "histórica"
+      ],
+      "coliformes_fecais": null,
+      "observacoes": "Trechos impróprios: Em frente à comporta de Botafogo",
       "data_coleta": "2026-07-16",
       "fonte_bal": "praialimpa.net",
       "score": -100
@@ -711,28 +733,6 @@
       ],
       "coliformes_fecais": null,
       "observacoes": "Trechos impróprios: Lado direito do Clube Naval de Charitas",
-      "data_coleta": "2026-07-16",
-      "fonte_bal": "praialimpa.net",
-      "score": -100
-    },
-    {
-      "nome": "São Francisco",
-      "lat": -22.915,
-      "lon": -43.118,
-      "onda": null,
-      "vento": null,
-      "agitacao": null,
-      "direcao": null,
-      "balneabilidade": "impropria",
-      "regiao": "Niterói",
-      "municipio": "Niterói",
-      "bairro": "São Francisco",
-      "extensao_km": 0.5,
-      "caracteristicas": [
-        "baía"
-      ],
-      "coliformes_fecais": null,
-      "observacoes": "Trechos impróprios: Em frente à Avenida Quintino Bocaiúva n° 233; Em frente à Igreja São Francisco",
       "data_coleta": "2026-07-16",
       "fonte_bal": "praialimpa.net",
       "score": -100
